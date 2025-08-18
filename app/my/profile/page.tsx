@@ -215,48 +215,6 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            {/* Account Settings */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mt-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">계정 설정</h2>
-              
-              <div className="space-y-4">
-                <button className="w-full text-left px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-sm font-medium text-gray-900 dark:text-white">비밀번호 변경</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">계정 보안을 위해 주기적으로 변경해주세요</p>
-                    </div>
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </button>
-
-                <button className="w-full text-left px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-sm font-medium text-gray-900 dark:text-white">알림 설정</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">이메일 및 푸시 알림을 관리하세요</p>
-                    </div>
-                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </button>
-
-                <button className="w-full text-left px-4 py-3 border border-red-300 dark:border-red-600 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-red-600 dark:text-red-400">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-sm font-medium">계정 탈퇴</h3>
-                      <p className="text-sm opacity-75">계정과 모든 데이터가 삭제됩니다</p>
-                    </div>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>

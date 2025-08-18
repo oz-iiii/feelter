@@ -26,7 +26,7 @@ export default function MyLayout({ children }: MyLayoutProps) {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
       <MySidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
-      <main className="lg:ml-64 min-h-screen">
+      <main className="md:ml-56 min-h-screen">
         {children}
       </main>
     </div>

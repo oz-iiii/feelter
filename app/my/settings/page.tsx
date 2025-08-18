@@ -20,9 +20,7 @@ export default function SettingsPage() {
     },
     display: {
       theme: "system",
-      language: "ko",
-      autoPlay: false,
-      showSpoilers: false
+      language: "ko"
     }
   });
 
@@ -247,39 +245,6 @@ export default function SettingsPage() {
                 </select>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900 dark:text-white">자동 재생</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">예고편이 자동으로 재생되도록 설정합니다</p>
-                </div>
-                <button
-                  onClick={() => updateSetting('display', 'autoPlay', !settings.display.autoPlay)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    settings.display.autoPlay ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'
-                  }`}
-                >
-                  <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    settings.display.autoPlay ? 'translate-x-6' : 'translate-x-1'
-                  }`} />
-                </button>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900 dark:text-white">스포일러 표시</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">줄거리 스포일러가 포함된 내용을 표시합니다</p>
-                </div>
-                <button
-                  onClick={() => updateSetting('display', 'showSpoilers', !settings.display.showSpoilers)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    settings.display.showSpoilers ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'
-                  }`}
-                >
-                  <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    settings.display.showSpoilers ? 'translate-x-6' : 'translate-x-1'
-                  }`} />
-                </button>
-              </div>
             </div>
           </div>
 
@@ -291,26 +256,15 @@ export default function SettingsPage() {
               <button className="w-full text-left px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-medium text-gray-900 dark:text-white">데이터 내보내기</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">내 활동 데이터를 내보내기합니다</p>
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-white">비밀번호 변경</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">계정 보안을 위해 주기적으로 변경해주세요</p>
                   </div>
                   <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
               </button>
 
-              <button className="w-full text-left px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-900 dark:text-white">캐시 정리</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">저장된 임시 데이터를 삭제합니다</p>
-                  </div>
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
-                </div>
-              </button>
 
               <button className="w-full text-left px-4 py-3 border border-red-300 dark:border-red-600 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-red-600 dark:text-red-400">
                 <div className="flex items-center justify-between">
