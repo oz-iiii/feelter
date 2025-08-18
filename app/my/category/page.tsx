@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import MyLayout from "../../components/my/MyLayout";
 
@@ -180,22 +180,23 @@ export default function MyCatPage() {
               {/* Movie Preview */}
               <div className="p-4">
                 {category.movies.length > 0 ? (
-                  <div className="flex space-x-3 overflow-x-auto">
-                    {category.movies.slice(0, 4).map((movie) => (
-                      <div key={movie.id} className="flex-shrink-0">
+                  <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2">
+                    {category.movies.map((movie) => (
+                      <div key={movie.id} className="aspect-[2/3]">
                         <Image
                           src={movie.poster}
                           alt={movie.title}
                           width={64}
                           height={96}
-                          className="w-16 h-24 object-cover rounded shadow-sm"
+                          className="w-full h-full object-cover rounded shadow-sm"
                         />
                       </div>
                     ))}
-                    {category.movieCount > 4 && (
-                      <div className="flex-shrink-0 w-16 h-24 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center">
-                        <span className="text-gray-500 dark:text-gray-400 text-sm">
-                          +{category.movieCount - 4}
+                    {/* Show remaining count if there are more movies than displayed */}
+                    {category.movieCount > category.movies.length && (
+                      <div className="aspect-[2/3] bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center">
+                        <span className="text-gray-500 dark:text-gray-400 text-xs text-center">
+                          +{category.movieCount - category.movies.length}
                         </span>
                       </div>
                     )}

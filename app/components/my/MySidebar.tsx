@@ -38,25 +38,6 @@ export default function MySidebar({ isOpen, onClose }: MySidebarProps) {
 			),
 		},
 		{
-			title: "프로필 편집",
-			href: "/my/profile",
-			icon: (
-				<svg
-					className="w-5 h-5"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth={2}
-						d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-					/>
-				</svg>
-			),
-		},
-		{
 			title: "시청 이력",
 			href: "/my/history",
 			icon: (
@@ -115,7 +96,7 @@ export default function MySidebar({ isOpen, onClose }: MySidebarProps) {
 		},
 		{
 			title: "나의 카테고리",
-			href: "/my/mycat",
+			href: "/my/category",
 			icon: (
 				<svg
 					className="w-5 h-5"
@@ -187,10 +168,13 @@ export default function MySidebar({ isOpen, onClose }: MySidebarProps) {
 
 	return (
 		<>
-			{/* Overlay for mobile */}
+			{/* Overlay for mobile only */}
 			{isOpen && (
 				<div
-					className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+					className="fixed inset-0 z-40 md:hidden"
+					style={{
+						backgroundColor: "rgba(0, 0, 0, 0.2)",
+					}} /**햄거버 메뉴 클릭시 사이드바 우측 색상 0.2가 투명도*/
 					onClick={onClose}
 				/>
 			)}
@@ -198,9 +182,9 @@ export default function MySidebar({ isOpen, onClose }: MySidebarProps) {
 			{/* Sidebar */}
 			<aside
 				className={`
-        fixed top-16 left-0 z-40 w-64 h-[calc(100vh-4rem)] bg-white dark:bg-gray-800 border-r border-gray-200 rounded-lg dark:border-gray-700 transition-transform
+        fixed top-16 left-0 z-50 w-56 h-[calc(100vh-4rem)] bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-transform shadow-lg
         ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-        lg:translate-x-0 lg:z-0 lg:flex-shrink-0
+        md:translate-x-0 md:z-0 md:flex-shrink-0 md:shadow-none
       `}
 			>
 				<div className="h-full px-3 pb-4 overflow-y-auto">
@@ -242,7 +226,6 @@ export default function MySidebar({ isOpen, onClose }: MySidebarProps) {
 							</Link>
 						))}
 					</nav>
-
 				</div>
 			</aside>
 		</>
