@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import ActivityCard, { ActivityCardProps } from "./ActivityCard";
 
 interface ReviewTabProps {
-  filter: string;
-  sortBy: string;
+  onCreatePost: () => void;
 }
 
 const mockReviewData: ActivityCardProps[] = [
@@ -81,7 +80,7 @@ const mockReviewData: ActivityCardProps[] = [
   },
 ];
 
-export default function ReviewTab({ filter, sortBy }: ReviewTabProps) {
+export default function ReviewTab({ onCreatePost }: ReviewTabProps) {
   const [reviewData, setReviewData] =
     useState<ActivityCardProps[]>(mockReviewData);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
@@ -97,25 +96,8 @@ export default function ReviewTab({ filter, sortBy }: ReviewTabProps) {
       );
     }
 
-    // Apply sort
-    filteredData.sort((a, b) => {
-      switch (sortBy) {
-        case "인기순":
-          return b.likes - a.likes;
-        case "댓글순":
-          return b.comments - a.comments;
-        case "최신순":
-        default:
-          return 0;
-      }
-    });
-
     setReviewData(filteredData);
-  }, [filter, sortBy, selectedRating]);
-
-  const handleCreateReview = () => {
-    alert("새 리뷰 작성 페이지로 이동합니다!");
-  };
+  }, [selectedRating]);
 
   const getRatingColor = (rating: number) => {
     if (rating >= 4) return "text-green-400";
@@ -168,7 +150,7 @@ export default function ReviewTab({ filter, sortBy }: ReviewTabProps) {
 
       {/* Create Review Button */}
       <button
-        onClick={handleCreateReview}
+        onClick={onCreatePost}
         className="w-full mb-8 py-4 px-6 bg-gradient-accent rounded-xl text-black 
                    font-bold text-lg hover:shadow-lg hover:shadow-yellow-500/20 
                    transition-all duration-300 hover:-translate-y-1"
@@ -218,7 +200,7 @@ export default function ReviewTab({ filter, sortBy }: ReviewTabProps) {
             다른 평점을 선택하거나 새 리뷰를 작성해보세요.
           </p>
           <button
-            onClick={handleCreateReview}
+            onClick={onCreatePost}
             className="bg-gradient-accent px-6 py-2 rounded-lg text-black font-medium
                        hover:shadow-lg transition-all duration-300"
           >
