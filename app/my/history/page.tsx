@@ -73,7 +73,7 @@ export default function HistoryPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">시청 이력</h1>
+            <h1 className="text-3xl font-bold text-white">시청 이력</h1>
           </div>
           
           {/* Filter Options */}
@@ -81,7 +81,7 @@ export default function HistoryPage() {
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              className="px-4 py-2 border border-gray-600 rounded-lg bg-gray-800 text-white"
             >
               <option value="all">전체</option>
               <option value="recent">최근 시청</option>
@@ -95,32 +95,32 @@ export default function HistoryPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">총 시청 영화</h3>
-            <p className="text-3xl font-bold text-blue-600">{watchHistory.length}편</p>
+          <div className="bg-gray-800 rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-white mb-2">총 시청 영화</h3>
+            <p className="text-3xl font-bold text-[#ccff00]">{watchHistory.length}편</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">평균 평점</h3>
+          <div className="bg-gray-800 rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-white mb-2">평균 평점</h3>
             <p className="text-3xl font-bold text-yellow-500">
               {(watchHistory.reduce((sum, movie) => sum + movie.rating, 0) / watchHistory.length).toFixed(1)}
             </p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">이번 달 시청</h3>
+          <div className="bg-gray-800 rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-white mb-2">이번 달 시청</h3>
             <p className="text-3xl font-bold text-green-600">{watchHistory.length}편</p>
           </div>
         </div>
 
         {/* Movie List */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-          <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+        <div className="bg-gray-800 rounded-lg shadow-sm">
+          <div className="p-6 border-b border-gray-700">
+            <h2 className="text-xl font-semibold text-white">
               시청 목록 ({filteredHistory.length}편)
             </h2>
           </div>
-          <div className="divide-y divide-gray-200 dark:divide-gray-700">
+          <div className="divide-y divide-gray-700">
             {filteredHistory.map((movie) => (
-              <div key={movie.id} className="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+              <div key={movie.id} className="p-6 hover:bg-gray-700 transition-colors">
                 <div className="flex items-start space-x-4">
                   {/* Movie Poster */}
                   <Image
@@ -135,16 +135,16 @@ export default function HistoryPage() {
                   <div className="flex-1">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        <h3 className="text-xl font-semibold text-white mb-2">
                           {movie.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-400 mb-1">
+                        <p className="text-gray-400 mb-1">
                           감독: {movie.director} • {movie.duration}
                         </p>
-                        <p className="text-gray-600 dark:text-gray-400 mb-3">
+                        <p className="text-gray-400 mb-3">
                           장르: {movie.genre}
                         </p>
-                        <p className="text-sm text-gray-500 dark:text-gray-500">
+                        <p className="text-sm text-gray-500">
                           시청일: {movie.watchDate}
                         </p>
                       </div>
@@ -164,15 +164,15 @@ export default function HistoryPage() {
                               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                           ))}
-                          <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                          <span className="ml-2 text-sm text-gray-400">
                             {movie.rating}
                           </span>
                         </div>
                         <div className="flex space-x-2">
-                          <button className="px-3 py-1 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors">
+                          <button className="px-3 py-1 text-sm bg-[#ccff00] hover:bg-[#b8e600] text-black rounded transition-colors">
                             다시 보기
                           </button>
-                          <button className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                          <button className="px-3 py-1 text-sm border border-gray-600 text-gray-300 rounded hover:bg-gray-700 transition-colors">
                             삭제
                           </button>
                         </div>

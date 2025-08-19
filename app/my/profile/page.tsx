@@ -61,7 +61,7 @@ export default function ProfilePage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">프로필 편집</h1>
+            <h1 className="text-3xl font-bold text-white">프로필 편집</h1>
           </div>
           
           <div className="flex space-x-3">
@@ -69,13 +69,13 @@ export default function ProfilePage() {
               <>
                 <button
                   onClick={handleCancel}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  className="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors"
                 >
                   취소
                 </button>
                 <button
                   onClick={handleSave}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                  className="px-4 py-2 bg-[#ccff00] hover:bg-[#b8e600] text-black rounded-lg transition-colors"
                 >
                   저장
                 </button>
@@ -83,7 +83,7 @@ export default function ProfilePage() {
             ) : (
               <button
                 onClick={() => setIsEditing(true)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                className="px-4 py-2 bg-[#ccff00] hover:bg-[#b8e600] text-black rounded-lg transition-colors"
               >
                 편집하기
               </button>
@@ -94,8 +94,8 @@ export default function ProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Profile Image Section */}
           <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">프로필 이미지</h2>
+            <div className="bg-gray-800 rounded-lg shadow-sm p-6">
+              <h2 className="text-lg font-semibold text-white mb-4">프로필 이미지</h2>
               <div className="text-center">
                 <div className="relative inline-block">
                   <Image
@@ -103,10 +103,10 @@ export default function ProfilePage() {
                     alt="프로필 이미지"
                     width={128}
                     height={128}
-                    className="w-32 h-32 rounded-full object-cover border-4 border-gray-200 dark:border-gray-600 mb-4"
+                    className="w-32 h-32 rounded-full object-cover border-4 border-gray-600 mb-4"
                   />
                   {isEditing && (
-                    <label className="absolute bottom-2 right-2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full cursor-pointer shadow-lg transition-colors">
+                    <label className="absolute bottom-2 right-2 bg-[#ccff00] hover:bg-[#b8e600] text-black p-2 rounded-full cursor-pointer shadow-lg transition-colors">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -115,7 +115,7 @@ export default function ProfilePage() {
                     </label>
                   )}
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-400">
                   가입일: {profile.joinDate}
                 </p>
               </div>
@@ -124,13 +124,13 @@ export default function ProfilePage() {
 
           {/* Profile Info Section */}
           <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">기본 정보</h2>
+            <div className="bg-gray-800 rounded-lg shadow-sm p-6">
+              <h2 className="text-lg font-semibold text-white mb-6">기본 정보</h2>
               
               <div className="space-y-6">
                 {/* Nickname */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     닉네임
                   </label>
                   {isEditing ? (
@@ -138,16 +138,16 @@ export default function ProfilePage() {
                       type="text"
                       value={tempProfile.nickname}
                       onChange={(e) => setTempProfile({ ...tempProfile, nickname: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-[#ccff00]"
                     />
                   ) : (
-                    <p className="text-gray-900 dark:text-white py-2">{profile.nickname}</p>
+                    <p className="text-white py-2">{profile.nickname}</p>
                   )}
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     이메일
                   </label>
                   {isEditing ? (
@@ -155,16 +155,16 @@ export default function ProfilePage() {
                       type="email"
                       value={tempProfile.email}
                       onChange={(e) => setTempProfile({ ...tempProfile, email: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-[#ccff00]"
                     />
                   ) : (
-                    <p className="text-gray-900 dark:text-white py-2">{profile.email}</p>
+                    <p className="text-white py-2">{profile.email}</p>
                   )}
                 </div>
 
                 {/* Bio */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     자기소개
                   </label>
                   {isEditing ? (
@@ -172,23 +172,23 @@ export default function ProfilePage() {
                       value={tempProfile.bio}
                       onChange={(e) => setTempProfile({ ...tempProfile, bio: e.target.value })}
                       rows={4}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 border border-gray-600 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-[#ccff00]"
                     />
                   ) : (
-                    <p className="text-gray-900 dark:text-white py-2">{profile.bio}</p>
+                    <p className="text-white py-2">{profile.bio}</p>
                   )}
                 </div>
 
                 {/* Favorite Genres */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     선호 장르
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {profile.favoriteGenres.map((genre: string, index: number) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full dark:bg-blue-900 dark:text-blue-300"
+                        className="px-3 py-1 bg-[#404400] text-[#e6ff4d] text-sm rounded-full"
                       >
                         {genre}
                       </span>
@@ -198,14 +198,14 @@ export default function ProfilePage() {
 
                 {/* Favorite Directors */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     선호 감독
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {profile.favoriteDirectors.map((director: string, index: number) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full dark:bg-green-900 dark:text-green-300"
+                        className="px-3 py-1 bg-green-900 text-green-300 text-sm rounded-full"
                       >
                         {director}
                       </span>

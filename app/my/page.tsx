@@ -43,35 +43,30 @@ export default function MyPage() {
     <MyLayout>
       <div className="w-full max-w-6xl mx-auto px-4 pb-8">
         {/* Profile Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
+        <div className="bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
             {/* Profile Image */}
-            <div className="relative">
+            <div>
               <Image
                 src={user.profileImage}
                 alt="프로필 이미지"
                 width={96}
                 height={96}
-                className="w-24 h-24 rounded-full object-cover border-4 border-gray-200 dark:border-gray-600"
+                className="w-24 h-24 rounded-full object-cover border-4 border-gray-600"
               />
-              <button className="absolute bottom-0 right-0 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-lg transition-colors">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-              </button>
             </div>
             
             {/* Profile Info */}
             <div className="text-center md:text-left flex-1">
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              <h1 className="text-2xl font-bold text-white mb-2">
                 {user.nickname}
               </h1>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-gray-400 mb-4">
                 가입일: {user.joinDate}
               </p>
               <Link
                 href="/my/profile"
-                className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-[#ccff00] hover:bg-[#b8e600] text-black rounded-lg transition-colors"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -83,24 +78,24 @@ export default function MyPage() {
         </div>
 
         {/* Points Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
+        <div className="bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <h2 className="text-xl font-semibold text-white mb-2">
                 내 포인트
               </h2>
-              <p className="text-3xl font-bold text-blue-600">
+              <p className="text-3xl font-bold text-[#ccff00]">
                 {user.points.toLocaleString()} P
               </p>
             </div>
             <div className="flex space-x-3">
               <Link
                 href="/my/points"
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-lg transition-colors"
               >
                 포인트 내역
               </Link>
-              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+              <button className="px-4 py-2 bg-[#ccff00] hover:bg-[#b8e600] text-black rounded-lg transition-colors">
                 포인트 사용
               </button>
             </div>
@@ -110,21 +105,21 @@ export default function MyPage() {
         {/* Grid Layout for History and Favorites */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Watch History */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+          <div className="bg-gray-800 rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-xl font-semibold text-white">
                 최근 시청 이력
               </h2>
               <Link
                 href="/my/history"
-                className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                className="text-[#ccff00] hover:text-[#b8e600] text-sm font-medium"
               >
                 전체보기
               </Link>
             </div>
             <div className="space-y-4">
               {watchHistory.map((movie) => (
-                <div key={movie.id} className="flex items-center space-x-4 p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                <div key={movie.id} className="flex items-center space-x-4 p-3 hover:bg-gray-700 rounded-lg transition-colors">
                   <Image
                     src={movie.poster}
                     alt={movie.title}
@@ -133,10 +128,10 @@ export default function MyPage() {
                     className="w-12 h-18 object-cover rounded"
                   />
                   <div className="flex-1">
-                    <h3 className="font-medium text-gray-900 dark:text-white">
+                    <h3 className="font-medium text-white">
                       {movie.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-gray-400">
                       {movie.watchDate}
                     </p>
                     <div className="flex items-center mt-1">
@@ -160,21 +155,21 @@ export default function MyPage() {
           </div>
 
           {/* Favorites */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+          <div className="bg-gray-800 rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-xl font-semibold text-white">
                 즐겨찾기
               </h2>
               <Link
                 href="/my/favorites"
-                className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                className="text-[#ccff00] hover:text-[#b8e600] text-sm font-medium"
               >
                 전체보기
               </Link>
             </div>
             <div className="space-y-4">
               {favorites.map((movie) => (
-                <div key={movie.id} className="flex items-center space-x-4 p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                <div key={movie.id} className="flex items-center space-x-4 p-3 hover:bg-gray-700 rounded-lg transition-colors">
                   <Image
                     src={movie.poster}
                     alt={movie.title}
@@ -183,10 +178,10 @@ export default function MyPage() {
                     className="w-12 h-18 object-cover rounded"
                   />
                   <div className="flex-1">
-                    <h3 className="font-medium text-gray-900 dark:text-white">
+                    <h3 className="font-medium text-white">
                       {movie.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-gray-400">
                       {movie.year} • {movie.genre}
                     </p>
                   </div>

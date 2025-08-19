@@ -1,9 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { handleStartClick } from "./landing-utils";
+// import Link from "next/link"; 사용안되는 변수
 
 export default function Home() {
+	const handleStartClick = (e: React.MouseEvent) => {
+		e.preventDefault();
+		alert(
+			"서비스 페이지로 이동합니다! (30초 설문을 통해 취향 맞춤 추천을 받아보세요!)"
+		);
+	};
 
 	return (
 		<div className="min-h-screen bg-[#0c0c0c] text-[#f0f0f0] flex flex-col pt-20">

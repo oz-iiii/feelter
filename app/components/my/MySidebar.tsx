@@ -182,23 +182,23 @@ export default function MySidebar({ isOpen, onClose }: MySidebarProps) {
 			{/* Sidebar */}
 			<aside
 				className={`
-        fixed top-16 left-0 z-50 w-56 h-[calc(100vh-4rem)] bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-transform shadow-lg
+        fixed top-16 left-0 z-50 w-56 h-[calc(100vh-4rem)] bg-gray-900 border-r border-gray-700 transition-transform shadow-lg
         ${isOpen ? "translate-x-0" : "-translate-x-full"} 
         md:translate-x-0 md:z-0 md:flex-shrink-0 md:shadow-none
       `}
 			>
 				<div className="h-full px-3 pb-4 overflow-y-auto">
 					{/* User Info Section */}
-					<div className="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+					<div className="mb-6 p-4 bg-gray-800 rounded-lg">
 						<div className="flex items-center space-x-3">
-							<div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-								<span className="text-white font-medium">영</span>
+							<div className="w-10 h-10 bg-[#ccff00] rounded-full flex items-center justify-center">
+								<span className="text-black font-medium">영</span>
 							</div>
 							<div>
-								<p className="text-sm font-medium text-gray-900 dark:text-white">
+								<p className="text-sm font-medium text-white">
 									영화매니아
 								</p>
-								<p className="text-xs text-gray-500 dark:text-gray-400">
+								<p className="text-xs text-gray-400">
 									2,450 포인트
 								</p>
 							</div>
@@ -216,8 +216,8 @@ export default function MySidebar({ isOpen, onClose }: MySidebarProps) {
                   flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors
                   ${
 										isActive(item.href)
-											? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
-											: "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+											? "bg-[#404400] text-[#ccff00]"
+											: "text-gray-300 hover:bg-gray-800"
 									}
                 `}
 							>

@@ -70,10 +70,10 @@ export default function FavoritesPage() {
 				{/* Header */}
 				<div className="flex items-center justify-between mb-8">
 					<div className="flex items-center space-x-4">
-						<h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+						<h1 className="text-3xl font-bold text-white">
 							즐겨찾기
 						</h1>
-						<span className="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+						<span className="bg-[#404400] text-[#e6ff4d] text-sm font-medium px-2.5 py-0.5 rounded">
 							{favorites.length}편
 						</span>
 					</div>
@@ -83,7 +83,7 @@ export default function FavoritesPage() {
 						<select
 							value={sortBy}
 							onChange={(e) => setSortBy(e.target.value)}
-							className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"
+							className="px-3 py-2 border border-gray-600 rounded-lg bg-gray-800 text-white text-sm"
 						>
 							<option value="recent">최근 추가</option>
 							<option value="rating">평점순</option>
@@ -91,13 +91,13 @@ export default function FavoritesPage() {
 							<option value="year">연도순</option>
 						</select>
 
-						<div className="flex border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
+						<div className="flex border border-gray-600 rounded-lg overflow-hidden">
 							<button
 								onClick={() => setViewMode("grid")}
 								className={`px-3 py-2 text-sm ${
 									viewMode === "grid"
-										? "bg-blue-600 text-white"
-										: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+										? "bg-[#ccff00] text-black"
+										: "bg-gray-800 text-gray-300"
 								}`}
 							>
 								격자
@@ -106,8 +106,8 @@ export default function FavoritesPage() {
 								onClick={() => setViewMode("list")}
 								className={`px-3 py-2 text-sm ${
 									viewMode === "list"
-										? "bg-blue-600 text-white"
-										: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+										? "bg-[#ccff00] text-black"
+										: "bg-gray-800 text-gray-300"
 								}`}
 							>
 								목록
@@ -132,10 +132,10 @@ export default function FavoritesPage() {
 								d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
 							/>
 						</svg>
-						<h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+						<h3 className="text-lg font-medium text-white mb-2">
 							즐겨찾기가 없습니다
 						</h3>
-						<p className="text-gray-500 dark:text-gray-400">
+						<p className="text-gray-400">
 							좋아하는 영화를 추가해보세요.
 						</p>
 					</div>
@@ -147,7 +147,7 @@ export default function FavoritesPage() {
 						{sortedFavorites.map((movie) => (
 							<div
 								key={movie.id}
-								className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden group hover:shadow-lg transition-shadow"
+								className="bg-gray-800 rounded-lg shadow-sm overflow-hidden group hover:shadow-lg transition-shadow"
 							>
 								<div className="relative">
 									<Image
@@ -175,10 +175,10 @@ export default function FavoritesPage() {
 									</button>
 								</div>
 								<div className="p-4">
-									<h3 className="font-semibold text-gray-900 dark:text-white mb-1 truncate">
+									<h3 className="font-semibold text-white mb-1 truncate">
 										{movie.title}
 									</h3>
-									<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+									<p className="text-sm text-gray-400 mb-2">
 										{movie.year} • {movie.genre}
 									</p>
 									<div className="flex items-center justify-between">
@@ -190,7 +190,7 @@ export default function FavoritesPage() {
 											>
 												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
 											</svg>
-											<span className="text-sm text-gray-600 dark:text-gray-400">
+											<span className="text-sm text-gray-400">
 												{movie.rating}
 											</span>
 										</div>
@@ -203,12 +203,12 @@ export default function FavoritesPage() {
 
 				{/* List View */}
 				{viewMode === "list" && favorites.length > 0 && (
-					<div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-						<div className="divide-y divide-gray-200 dark:divide-gray-700">
+					<div className="bg-gray-800 rounded-lg shadow-sm">
+						<div className="divide-y divide-gray-700">
 							{sortedFavorites.map((movie) => (
 								<div
 									key={movie.id}
-									className="p-6 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+									className="p-6 hover:bg-gray-700 transition-colors"
 								>
 									<div className="flex items-center space-x-4">
 										<Image
@@ -219,16 +219,16 @@ export default function FavoritesPage() {
 											className="w-16 h-24 object-cover rounded-lg"
 										/>
 										<div className="flex-1">
-											<h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+											<h3 className="text-lg font-semibold text-white mb-1">
 												{movie.title}
 											</h3>
-											<p className="text-gray-600 dark:text-gray-400 mb-1">
+											<p className="text-gray-400 mb-1">
 												감독: {movie.director} • {movie.year}
 											</p>
-											<p className="text-gray-600 dark:text-gray-400 mb-2">
+											<p className="text-gray-400 mb-2">
 												장르: {movie.genre}
 											</p>
-											<p className="text-sm text-gray-500 dark:text-gray-500">
+											<p className="text-sm text-gray-500">
 												추가일: {movie.addedDate}
 											</p>
 										</div>
@@ -241,7 +241,7 @@ export default function FavoritesPage() {
 												>
 													<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
 												</svg>
-												<span className="text-gray-900 dark:text-white font-medium">
+												<span className="text-white font-medium">
 													{movie.rating}
 												</span>
 											</div>
