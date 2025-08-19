@@ -5,74 +5,72 @@ import Image from "next/image";
 import MyLayout from "../../components/my/MyLayout";
 
 export default function FavoritesPage() {
-  const [favorites, setFavorites] = useState([
-    {
-      id: 1,
-      title: "인셉션",
-      poster: "/among-us-poster.png",
-      year: 2010,
-      genre: "SF/스릴러",
-      director: "크리스토퍼 놀란",
-      rating: 8.8,
-      addedDate: "2024.07.15",
-    },
-    {
-      id: 2,
-      title: "라라랜드",
-      poster: "/api/placeholder/200/300",
-      year: 2016,
-      genre: "뮤지컬/로맨스",
-      director: "데미언 차젤",
-      rating: 8.0,
-      addedDate: "2024.07.20",
-    },
-    {
-      id: 3,
-      title: "어벤져스: 엔드게임",
-      poster: "/api/placeholder/200/300",
-      year: 2019,
-      genre: "액션/어드벤처",
-      director: "안토니 루소",
-      rating: 8.4,
-      addedDate: "2024.08.01",
-    },
-    {
-      id: 4,
-      title: "기생충",
-      poster: "/api/placeholder/200/300",
-      year: 2019,
-      genre: "드라마/스릴러",
-      director: "봉준호",
-      rating: 8.6,
-      addedDate: "2024.08.05",
-    },
-  ]);
+	const [favorites, setFavorites] = useState([
+		{
+			id: 1,
+			title: "인셉션",
+			poster: "/among-us-poster.png",
+			year: 2010,
+			genre: "SF/스릴러",
+			director: "크리스토퍼 놀란",
+			rating: 8.8,
+			addedDate: "2024.07.15",
+		},
+		{
+			id: 2,
+			title: "라라랜드",
+			poster: "/api/placeholder/200/300",
+			year: 2016,
+			genre: "뮤지컬/로맨스",
+			director: "데미언 차젤",
+			rating: 8.0,
+			addedDate: "2024.07.20",
+		},
+		{
+			id: 3,
+			title: "어벤져스: 엔드게임",
+			poster: "/api/placeholder/200/300",
+			year: 2019,
+			genre: "액션/어드벤처",
+			director: "안토니 루소",
+			rating: 8.4,
+			addedDate: "2024.08.01",
+		},
+		{
+			id: 4,
+			title: "기생충",
+			poster: "/among-us-poster.png",
+			year: 2019,
+			genre: "드라마/스릴러",
+			director: "봉준호",
+			rating: 8.6,
+			addedDate: "2024.08.05",
+		},
+	]);
 
-  const [sortBy, setSortBy] = useState("recent");
-  const [viewMode, setViewMode] = useState("grid");
+	const [sortBy, setSortBy] = useState("recent");
+	const [viewMode, setViewMode] = useState("grid");
 
-  const removeFavorite = (id: number) => {
-    setFavorites(favorites.filter((movie) => movie.id !== id));
-  };
+	const removeFavorite = (id: number) => {
+		setFavorites(favorites.filter((movie) => movie.id !== id));
+	};
 
-  const sortedFavorites = [...favorites].sort((a, b) => {
-    if (sortBy === "recent")
-      return new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime();
-    if (sortBy === "rating") return b.rating - a.rating;
-    if (sortBy === "title") return a.title.localeCompare(b.title);
-    if (sortBy === "year") return b.year - a.year;
-    return 0;
-  });
+	const sortedFavorites = [...favorites].sort((a, b) => {
+		if (sortBy === "recent")
+			return new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime();
+		if (sortBy === "rating") return b.rating - a.rating;
+		if (sortBy === "title") return a.title.localeCompare(b.title);
+		if (sortBy === "year") return b.year - a.year;
+		return 0;
+	});
 
-  return (
-    <MyLayout>
-      <div className="w-full max-w-6xl mx-auto px-4 pb-8">
+	return (
+		<MyLayout>
+			<div className="w-full max-w-6xl mx-auto px-4 pb-8">
 				{/* Header */}
 				<div className="flex items-center justify-between mb-8">
 					<div className="flex items-center space-x-4">
-						<h1 className="text-3xl font-bold text-white">
-							즐겨찾기
-						</h1>
+						<h1 className="text-3xl font-bold text-white">즐겨찾기</h1>
 						<span className="bg-[#404400] text-[#e6ff4d] text-sm font-medium px-2.5 py-0.5 rounded">
 							{favorites.length}편
 						</span>
@@ -135,9 +133,7 @@ export default function FavoritesPage() {
 						<h3 className="text-lg font-medium text-white mb-2">
 							즐겨찾기가 없습니다
 						</h3>
-						<p className="text-gray-400">
-							좋아하는 영화를 추가해보세요.
-						</p>
+						<p className="text-gray-400">좋아하는 영화를 추가해보세요.</p>
 					</div>
 				)}
 
@@ -225,9 +221,7 @@ export default function FavoritesPage() {
 											<p className="text-gray-400 mb-1">
 												감독: {movie.director} • {movie.year}
 											</p>
-											<p className="text-gray-400 mb-2">
-												장르: {movie.genre}
-											</p>
+											<p className="text-gray-400 mb-2">장르: {movie.genre}</p>
 											<p className="text-sm text-gray-500">
 												추가일: {movie.addedDate}
 											</p>
@@ -258,7 +252,7 @@ export default function FavoritesPage() {
 						</div>
 					</div>
 				)}
-      </div>
-    </MyLayout>
-  );
+			</div>
+		</MyLayout>
+	);
 }
