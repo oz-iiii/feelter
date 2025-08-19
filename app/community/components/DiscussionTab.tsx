@@ -97,11 +97,10 @@ const mockDiscussionData: Discussion[] = [
 ];
 
 interface DiscussionTabProps {
-  filter: string;
-  sortBy: string;
+  onCreatePost: () => void;
 }
 
-export default function DiscussionTab({ filter, sortBy }: DiscussionTabProps) {
+export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
   const [discussionData, setDiscussionData] =
     useState<Discussion[]>(mockDiscussionData);
   const [selectedType, setSelectedType] = useState<string | null>(null);
@@ -114,25 +113,8 @@ export default function DiscussionTab({ filter, sortBy }: DiscussionTabProps) {
       filteredData = filteredData.filter((item) => item.type === selectedType);
     }
 
-    // Apply sort
-    filteredData.sort((a, b) => {
-      switch (sortBy) {
-        case "인기순":
-          return b.likes - a.likes;
-        case "댓글순":
-          return b.comments - a.comments;
-        case "최신순":
-        default:
-          return 0;
-      }
-    });
-
     setDiscussionData(filteredData);
-  }, [filter, sortBy, selectedType]);
-
-  const handleCreateDiscussion = () => {
-    alert("새 토론 시작 페이지로 이동합니다!");
-  };
+  }, [selectedType]);
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -245,7 +227,7 @@ export default function DiscussionTab({ filter, sortBy }: DiscussionTabProps) {
 
       {/* Create Discussion Button */}
       <button
-        onClick={handleCreateDiscussion}
+        onClick={onCreatePost}
         className="w-full mb-8 py-4 px-6 bg-gradient-accent rounded-xl text-black 
                    font-bold text-lg hover:shadow-lg hover:shadow-blue-500/20 
                    transition-all duration-300 hover:-translate-y-1"
@@ -435,7 +417,7 @@ export default function DiscussionTab({ filter, sortBy }: DiscussionTabProps) {
             시작해보세요.
           </p>
           <button
-            onClick={handleCreateDiscussion}
+            onClick={onCreatePost}
             className="bg-gradient-accent px-6 py-2 rounded-lg text-black font-medium
                        hover:shadow-lg transition-all duration-300"
           >

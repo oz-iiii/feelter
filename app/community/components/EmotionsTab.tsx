@@ -13,6 +13,10 @@ interface EmotionRecord {
   tags: string[];
 }
 
+interface EmotionsTabProps {
+  onCreatePost: () => void;
+}
+
 const mockEmotionData: EmotionRecord[] = [
   {
     id: "1",
@@ -77,7 +81,7 @@ const emotionColors = {
   두려움: "from-gray-600 to-black",
 };
 
-export default function EmotionsTab() {
+export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
   const [emotionData, setEmotionData] =
     useState<EmotionRecord[]>(mockEmotionData);
   const [selectedEmotion, setSelectedEmotion] = useState<string | null>(null);
@@ -110,10 +114,6 @@ export default function EmotionsTab() {
   const filteredData = selectedEmotion
     ? emotionData.filter((item) => item.emotion === selectedEmotion)
     : emotionData;
-
-  const handleCreateEmotion = () => {
-    alert("새 감정 기록 페이지로 이동합니다!");
-  };
 
   const handleRecordClick = (record: EmotionRecord) => {
     setSelectedRecord(record);
@@ -168,7 +168,7 @@ export default function EmotionsTab() {
 
       {/* Create Emotion Button */}
       <button
-        onClick={handleCreateEmotion}
+        onClick={onCreatePost}
         className="w-full mb-8 py-4 px-6 bg-gradient-accent rounded-xl text-black 
                    font-bold text-lg hover:shadow-lg hover:shadow-cyan-500/20 
                    transition-all duration-300 hover:-translate-y-1"
@@ -389,7 +389,7 @@ export default function EmotionsTab() {
             기록해보세요.
           </p>
           <button
-            onClick={handleCreateEmotion}
+            onClick={onCreatePost}
             className="bg-gradient-accent px-6 py-2 rounded-lg text-black font-medium
                        hover:shadow-lg transition-all duration-300"
           >

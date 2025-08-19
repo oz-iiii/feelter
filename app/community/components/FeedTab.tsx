@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import ActivityCard, { ActivityCardProps } from "./ActivityCard";
 
 interface FeedTabProps {
-  filter: string;
-  sortBy: string;
+  onCreatePost: () => void;
 }
 
 const mockFeedData: ActivityCardProps[] = [
@@ -64,49 +63,9 @@ const mockFeedData: ActivityCardProps[] = [
   },
 ];
 
-export default function FeedTab({ filter, sortBy }: FeedTabProps) {
+export default function FeedTab({ onCreatePost }: FeedTabProps) {
   const [feedData, setFeedData] = useState<ActivityCardProps[]>(mockFeedData);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Filter and sort data
-  useEffect(() => {
-    let filteredData = [...mockFeedData];
-
-    // Apply filter
-    if (filter !== "전체") {
-      filteredData = filteredData.filter((item) => {
-        switch (filter) {
-          case "리뷰":
-            return item.type === "review";
-          case "토론":
-            return item.type === "discussion";
-          case "고양이 성장 소식":
-            return item.type === "cat";
-          default:
-            return true;
-        }
-      });
-    }
-
-    // Apply sort
-    filteredData.sort((a, b) => {
-      switch (sortBy) {
-        case "인기순":
-          return b.likes - a.likes;
-        case "댓글순":
-          return b.comments - a.comments;
-        case "최신순":
-        default:
-          return 0; // Keep original order for latest
-      }
-    });
-
-    setFeedData(filteredData);
-  }, [filter, sortBy]);
-
-  const handleCreatePost = () => {
-    alert("새 글 작성 페이지로 이동합니다!");
-  };
 
   const loadMoreContent = () => {
     setIsLoading(true);
@@ -137,7 +96,7 @@ export default function FeedTab({ filter, sortBy }: FeedTabProps) {
     <div className="w-full">
       {/* Create Post Button */}
       <button
-        onClick={handleCreatePost}
+        onClick={onCreatePost}
         className="w-full mb-8 py-4 px-6 bg-gradient-accent rounded-xl text-black 
                    font-bold text-lg hover:shadow-lg hover:shadow-cyan-500/20 
                    transition-all duration-300 hover:-translate-y-1"
@@ -172,11 +131,9 @@ export default function FeedTab({ filter, sortBy }: FeedTabProps) {
           <h3 className="text-xl font-bold text-white mb-2">
             표시할 피드가 없습니다
           </h3>
-          <p className="text-gray-400 mb-6">
-            다른 필터를 선택하거나 새 글을 작성해보세요.
-          </p>
+          <p className="text-gray-400 mb-6">새 글을 작성해보세요.</p>
           <button
-            onClick={handleCreatePost}
+            onClick={onCreatePost}
             className="bg-gradient-accent px-6 py-2 rounded-lg text-black font-medium
                        hover:shadow-lg transition-all duration-300"
           >
