@@ -4,7 +4,7 @@ import { useState } from "react";
 import MyLayout from "../../components/my/MyLayout";
 
 export default function SurveyPage() {
-  const [currentSurvey] = useState({
+	const [currentSurvey] = useState({
 		id: 1,
 		title: "2024 연말 영화 시청 패턴 조사",
 		description:
@@ -40,8 +40,9 @@ export default function SurveyPage() {
 					"웨이브",
 					"티빙",
 					"왓챠",
+					"디즈니+",
+					"쿠팡플레이",
 					"영화관",
-					"DVD/블루레이",
 					"기타",
 				],
 				required: true,
@@ -51,10 +52,12 @@ export default function SurveyPage() {
 				type: "single",
 				question: "일주일에 평균 몇 편의 영화를 시청하시나요?",
 				options: [
-					"1편 이하",
-					"2-3편",
-					"4-5편",
-					"6편 이상",
+					"1시간 미만",
+					"1-2시간",
+					"2-3시간",
+					"3-4시간",
+					"4-5시간",
+					"5시간 이상",
 				],
 				required: true,
 			},
@@ -68,7 +71,9 @@ export default function SurveyPage() {
 		],
 	});
 
-	const [answers, setAnswers] = useState<{ [key: number]: string | string[] | number }>({});
+	const [answers, setAnswers] = useState<{
+		[key: number]: string | string[] | number;
+	}>({});
 	const [completedSurveys] = useState([
 		{
 			id: 1,
@@ -89,7 +94,10 @@ export default function SurveyPage() {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [showSurveyDetail, setShowSurveyDetail] = useState(false);
 
-	const handleAnswer = (questionId: number, answer: string | string[] | number) => {
+	const handleAnswer = (
+		questionId: number,
+		answer: string | string[] | number
+	) => {
 		setAnswers((prev) => ({
 			...prev,
 			[questionId]: answer,
@@ -353,9 +361,10 @@ export default function SurveyPage() {
 														type="checkbox"
 														value={option}
 														onChange={(e) => {
-															const currentAnswers = (
-																answers[currentSurvey.questions[currentStep].id] as string[]
-															) || [];
+															const currentAnswers =
+																(answers[
+																	currentSurvey.questions[currentStep].id
+																] as string[]) || [];
 															if (e.target.checked) {
 																handleAnswer(
 																	currentSurvey.questions[currentStep].id,
