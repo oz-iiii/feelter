@@ -1,21 +1,10 @@
-export interface Movie {
-	id: number;
-	title: string;
-	poster: string;
-	year?: number;
-	genre: string;
-	director: string;
-	rating: number;
-	duration?: string;
-	watchDate?: string;
-	addedDate?: string;
-}
+import { Movie } from "../types/movie";
 
 export const movies: Movie[] = [
 	{
 		id: 1,
 		title: "인터스텔라",
-		poster: "/jjangu.png",
+		poster: "/img/jjangu.png",
 		year: 2014,
 		genre: "SF/드라마",
 		director: "크리스토퍼 놀란",
@@ -27,7 +16,7 @@ export const movies: Movie[] = [
 	{
 		id: 2,
 		title: "기생충",
-		poster: "/jjangu.png",
+		poster: "/img/jjanga.png",
 		year: 2019,
 		genre: "드라마/스릴러",
 		director: "봉준호",
@@ -39,7 +28,7 @@ export const movies: Movie[] = [
 	{
 		id: 3,
 		title: "타이타닉",
-		poster: "/jjangu.png",
+		poster: "/img/jjangu.png",
 		year: 1997,
 		genre: "로맨스/드라마",
 		director: "제임스 카메론",
@@ -51,7 +40,7 @@ export const movies: Movie[] = [
 	{
 		id: 4,
 		title: "어벤져스: 엔드게임",
-		poster: "/jjangu.png",
+		poster: "/img/jjangu.png",
 		year: 2019,
 		genre: "액션/어드벤처",
 		director: "안토니 루소",
@@ -63,7 +52,7 @@ export const movies: Movie[] = [
 	{
 		id: 5,
 		title: "라라랜드",
-		poster: "/jjangu.png",
+		poster: "/img/jjangu.png",
 		year: 2016,
 		genre: "뮤지컬/로맨스",
 		director: "데미언 차젤",
@@ -75,7 +64,7 @@ export const movies: Movie[] = [
 	{
 		id: 6,
 		title: "인셉션",
-		poster: "/jjangu.png",
+		poster: "/img/jjangu.png",
 		year: 2010,
 		genre: "SF/스릴러",
 		director: "크리스토퍼 놀란",

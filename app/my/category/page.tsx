@@ -2,50 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import MyLayout from "../../components/my/MyLayout";
+import MyLayout from "../../_components/my/MyLayout";
+import { Category } from "../../_components/model/types";
+import { defaultCategories } from "../../_components/model/data/categories";
 
 export default function MyCatPage() {
-	const [categories, setCategories] = useState([
-		{
-			id: 1,
-			name: "내가 만든 영화 리스트",
-			description: "개인적으로 추천하고 싶은 영화들을 모아둔 리스트",
-			movieCount: 15,
-			isPublic: true,
-			createdDate: "2024.07.10",
-			movies: [
-				{ id: 1, title: "인셉션", poster: "/among-us-poster.png" },
-				{ id: 2, title: "인터스텔라", poster: "/among-us-poster.png" },
-				{ id: 3, title: "다크 나이트", poster: "/among-us-poster.png" },
-			],
-		},
-		{
-			id: 2,
-			name: "한국 명작 영화",
-			description: "꼭 봐야 할 한국 영화들을 정리한 컬렉션",
-			movieCount: 8,
-			isPublic: false,
-			createdDate: "2024.06.25",
-			movies: [
-				{ id: 4, title: "기생충", poster: "/among-us-poster.png" },
-				{ id: 5, title: "올드보이", poster: "/among-us-poster.png" },
-				{ id: 6, title: "타는 것들", poster: "/among-us-poster.png" },
-			],
-		},
-		{
-			id: 3,
-			name: "주말에 보기 좋은 코미디",
-			description: "가벼운 마음으로 볼 수 있는 재밌는 영화들",
-			movieCount: 12,
-			isPublic: true,
-			createdDate: "2024.08.01",
-			movies: [
-				{ id: 7, title: "극한직업", poster: "/among-us-poster.png" },
-				{ id: 8, title: "걸캅스", poster: "/among-us-poster.png" },
-				{ id: 9, title: "엑시트", poster: "/among-us-poster.png" },
-			],
-		},
-	]);
+	const [categories, setCategories] = useState<Category[]>(defaultCategories);
 
 	const [showCreateModal, setShowCreateModal] = useState(false);
 	const [newCategory, setNewCategory] = useState({
@@ -59,7 +21,7 @@ export default function MyCatPage() {
 	const handleCreateCategory = () => {
 		if (!newCategory.name) return;
 
-		const category = {
+		const category: Category = {
 			id: categories.length + 1,
 			name: newCategory.name,
 			description: newCategory.description,
@@ -94,9 +56,7 @@ export default function MyCatPage() {
 				{/* Header */}
 				<div className="flex items-center justify-between mb-8">
 					<div className="flex items-center space-x-4">
-						<h1 className="text-3xl font-bold text-white">
-							나의 카테고리
-						</h1>
+						<h1 className="text-3xl font-bold text-white">나의 카테고리</h1>
 						<span className="bg-[#404400] text-[#e6ff4d] text-sm font-medium px-2.5 py-0.5 rounded">
 							{categories.length}개
 						</span>

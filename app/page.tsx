@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-// import Link from "next/link"; 사용안되는 변수
 
 export default function Home() {
 	const handleStartClick = (e: React.MouseEvent) => {

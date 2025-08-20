@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import MyLayout from "../../components/my/MyLayout";
-import { movies, Movie } from "../../../data/movies";
+import MyLayout from "../../_components/my/MyLayout";
+import { Movie } from "../../_components/model/types";
+import { movies } from "../../_components/model/data/movies";
 
 export default function FavoritesPage() {
 	const [favorites, setFavorites] = useState<Movie[]>(

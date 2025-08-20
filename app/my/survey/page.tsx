@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import MyLayout from "../../components/my/MyLayout";
+import MyLayout from "../../_components/my/MyLayout";
 
 export default function SurveyPage() {
 	const [currentSurvey] = useState({
