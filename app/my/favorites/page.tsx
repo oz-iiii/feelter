@@ -3,50 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import MyLayout from "../../components/my/MyLayout";
+import { movies, Movie } from "../../../data/movies";
 
 export default function FavoritesPage() {
-	const [favorites, setFavorites] = useState([
-		{
-			id: 1,
-			title: "인셉션",
-			poster: "/among-us-poster.png",
-			year: 2010,
-			genre: "SF/스릴러",
-			director: "크리스토퍼 놀란",
-			rating: 8.8,
-			addedDate: "2024.07.15",
-		},
-		{
-			id: 2,
-			title: "라라랜드",
-			poster: "/api/placeholder/200/300",
-			year: 2016,
-			genre: "뮤지컬/로맨스",
-			director: "데미언 차젤",
-			rating: 8.0,
-			addedDate: "2024.07.20",
-		},
-		{
-			id: 3,
-			title: "어벤져스: 엔드게임",
-			poster: "/api/placeholder/200/300",
-			year: 2019,
-			genre: "액션/어드벤처",
-			director: "안토니 루소",
-			rating: 8.4,
-			addedDate: "2024.08.01",
-		},
-		{
-			id: 4,
-			title: "기생충",
-			poster: "/among-us-poster.png",
-			year: 2019,
-			genre: "드라마/스릴러",
-			director: "봉준호",
-			rating: 8.6,
-			addedDate: "2024.08.05",
-		},
-	]);
+	const [favorites, setFavorites] = useState<Movie[]>(
+		movies.filter((movie) => movie.addedDate)
+	);
 
 	const [sortBy, setSortBy] = useState("recent");
 	const [viewMode, setViewMode] = useState("grid");
@@ -57,10 +19,13 @@ export default function FavoritesPage() {
 
 	const sortedFavorites = [...favorites].sort((a, b) => {
 		if (sortBy === "recent")
-			return new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime();
+			return (
+				new Date(b.addedDate || "").getTime() -
+				new Date(a.addedDate || "").getTime()
+			);
 		if (sortBy === "rating") return b.rating - a.rating;
 		if (sortBy === "title") return a.title.localeCompare(b.title);
-		if (sortBy === "year") return b.year - a.year;
+		if (sortBy === "year") return (b.year || 0) - (a.year || 0);
 		return 0;
 	});
 
@@ -175,7 +140,7 @@ export default function FavoritesPage() {
 										{movie.title}
 									</h3>
 									<p className="text-sm text-gray-400 mb-2">
-										{movie.year} • {movie.genre}
+										{movie.year || "연도 미상"} • {movie.genre}
 									</p>
 									<div className="flex items-center justify-between">
 										<div className="flex items-center">
@@ -219,7 +184,7 @@ export default function FavoritesPage() {
 												{movie.title}
 											</h3>
 											<p className="text-gray-400 mb-1">
-												감독: {movie.director} • {movie.year}
+												감독: {movie.director} • {movie.year || "연도 미상"}
 											</p>
 											<p className="text-gray-400 mb-2">장르: {movie.genre}</p>
 											<p className="text-sm text-gray-500">

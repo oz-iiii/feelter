@@ -3,67 +3,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import MyLayout from "../../components/my/MyLayout";
+import { movies, Movie } from "../../../data/movies";
 
 export default function HistoryPage() {
 	const [viewMode, setViewMode] = useState("grid");
 	const [filter, setFilter] = useState("all");
-	const [watchHistory] = useState([
-		{
-			id: 1,
-			title: "인터스텔라",
-			poster: "/among-us-poster.png",
-			watchDate: "2024.08.10",
-			rating: 4.5,
-			genre: "SF/드라마",
-			director: "크리스토퍼 놀란",
-			duration: "169분",
-		},
-		{
-			id: 2,
-			title: "기생충",
-			poster: "/among-us-poster.png",
-			watchDate: "2024.08.08",
-			rating: 5.0,
-			genre: "드라마/스릴러",
-			director: "봉준호",
-			duration: "132분",
-		},
-		{
-			id: 3,
-			title: "타이타닉",
-			poster: "/among-us-poster.png",
-			watchDate: "2024.08.05",
-			rating: 4.0,
-			genre: "로맨스/드라마",
-			director: "제임스 카메론",
-			duration: "194분",
-		},
-		{
-			id: 4,
-			title: "어벤져스: 엔드게임",
-			poster: "/among-us-poster.png",
-			watchDate: "2024.08.03",
-			rating: 4.8,
-			genre: "액션/어드벤처",
-			director: "안토니 루소",
-			duration: "181분",
-		},
-		{
-			id: 5,
-			title: "라라랜드",
-			poster: "/among-us-poster.png",
-			watchDate: "2024.08.01",
-			rating: 4.2,
-			genre: "뮤지컬/로맨스",
-			director: "데미언 차젤",
-			duration: "128분",
-		},
-	]);
+	const [watchHistory] = useState<Movie[]>(
+		movies.filter((movie) => movie.watchDate)
+	);
 
 	const filteredHistory = watchHistory.filter((movie) => {
 		if (filter === "all") return true;
-		if (filter === "recent")
-			return new Date(movie.watchDate) > new Date("2024.08.05");
+		if (filter === "recent") return true;
 		if (filter === "high-rated") return movie.rating >= 4.5;
 		return true;
 	});
