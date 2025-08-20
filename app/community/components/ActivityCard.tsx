@@ -48,13 +48,13 @@ export default function ActivityCard({
   const getCardStyle = () => {
     switch (type) {
       case "review":
-        return "border-yellow-500/30 bg-gradient-to-r from-yellow-500/5 to-red-500/5";
+        return "border-yellow-500/30";
       case "discussion":
-        return "border-blue-500/30 bg-gradient-to-r from-blue-500/5 to-cyan-500/5";
+        return "border-blue-500/30";
       case "cat":
-        return "border-orange-500/30 bg-gradient-to-r from-orange-500/5 to-yellow-500/5";
+        return "border-orange-500/30";
       case "emotion":
-        return "border-cyan-500/30 bg-gradient-to-r from-cyan-500/5 to-blue-500/5";
+        return "border-cyan-500/30";
       default:
         return "border-white/10";
     }
@@ -68,9 +68,10 @@ export default function ActivityCard({
         {Array.from({ length: 5 }, (_, i) => (
           <span
             key={i}
-            className={`text-lg ${
-              i < rating ? "text-yellow-400" : "text-gray-600"
-            }`}
+            className="text-lg"
+            style={{
+              color: i < rating ? "#CCFF00" : "#333333",
+            }}
           >
             ★
           </span>
@@ -82,17 +83,19 @@ export default function ActivityCard({
   return (
     <article
       className={`
-        bg-white/5 backdrop-blur-lg border rounded-2xl p-6 mb-6
-        transition-all duration-300 hover:bg-white/8 hover:transform hover:-translate-y-1
-        hover:shadow-lg hover:shadow-blue-500/10
-        ${getCardStyle()} ${className}
+        bg-gray-800 backdrop-blur-lg border rounded-2xl p-6 mb-6 shadow-sm
+        transition-all duration-300 hover:transform hover:-translate-y-1
+        hover:shadow-lg ${getCardStyle()} ${className}
       `}
     >
       {/* Card Header */}
       <header className="flex items-center gap-4 mb-4">
         <div
-          className="w-12 h-12 bg-gradient-to-r from-pink-500 to-yellow-500 
-                        rounded-full flex items-center justify-center text-lg flex-shrink-0"
+          className="w-12 h-12 rounded-full flex items-center justify-center text-lg flex-shrink-0"
+          style={{
+            background: "linear-gradient(135deg, #CCFF00 0%, #99CC00 100%)",
+            color: "#111111",
+          }}
         >
           {avatar}
         </div>
@@ -102,8 +105,11 @@ export default function ActivityCard({
           <p className="text-sm text-gray-400">{timestamp}</p>
         </div>
 
-        <div className="bg-blue-500/20 px-3 py-1 rounded-full">
-          <span className="text-xs text-accent-yellow font-medium">
+        <div
+          className="px-3 py-1 rounded-full"
+          style={{ backgroundColor: "rgba(204, 255, 0, 0.2)" }}
+        >
+          <span className="text-xs font-medium" style={{ color: "#CCFF00" }}>
             {activityType}
           </span>
         </div>
@@ -129,7 +135,12 @@ export default function ActivityCard({
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="bg-white/10 text-xs px-2 py-1 rounded-full text-gray-300"
+                className="text-xs px-2 py-1 rounded-full"
+                style={{
+                  backgroundColor: "rgba(204, 255, 0, 0.1)",
+                  color: "#CCFF00",
+                  border: "1px solid rgba(204, 255, 0, 0.3)",
+                }}
               >
                 #{tag}
               </span>
@@ -144,12 +155,11 @@ export default function ActivityCard({
           onClick={handleLike}
           className={`
             flex items-center gap-2 px-3 py-1 rounded-full text-sm transition-all duration-300
-            ${
-              isLiked
-                ? "text-accent-yellow bg-yellow-500/20"
-                : "text-gray-400 hover:text-accent-yellow hover:bg-yellow-500/10"
-            }
+            ${isLiked ? "text-black" : "text-gray-400 hover:text-white"}
           `}
+          style={{
+            backgroundColor: isLiked ? "#CCFF00" : "transparent",
+          }}
         >
           <span
             className={`transition-transform duration-300 ${
@@ -171,7 +181,7 @@ export default function ActivityCard({
 
         <button
           className="flex items-center gap-2 px-3 py-1 rounded-full text-sm 
-                          text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
+                          text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
         >
           <span>🔤</span>
           <span>공유</span>
@@ -181,7 +191,7 @@ export default function ActivityCard({
         {type === "cat" && (
           <button
             className="flex items-center gap-2 px-3 py-1 rounded-full text-sm 
-                            text-gray-400 hover:text-green-400 hover:bg-green-500/10 transition-all duration-300"
+                            text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
           >
             <span>🎉</span>
             <span>축하</span>

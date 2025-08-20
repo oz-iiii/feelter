@@ -99,7 +99,10 @@ export default function CatsTab() {
     <div className="w-full">
       {/* Page Header */}
       <div className="text-center mb-8">
-        <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-accent bg-clip-text text-transparent mb-4">
+        <h1
+          className="text-3xl lg:text-4xl font-bold mb-4"
+          style={{ color: "#CCFF00" }}
+        >
           나의 고양이 식구들
         </h1>
         <p className="text-gray-400 text-lg">
@@ -113,9 +116,9 @@ export default function CatsTab() {
           <div
             key={cat.id}
             onClick={() => handleCatClick(cat)}
-            className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 
-                       cursor-pointer transition-all duration-300 hover:bg-white/10 
-                       hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/20"
+            className="bg-gray-800 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-sm
+                       cursor-pointer transition-all duration-300 hover:-translate-y-2 
+                       hover:shadow-lg"
           >
             {/* Cat Avatar */}
             <div className="text-center mb-4">
@@ -158,7 +161,7 @@ export default function CatsTab() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="bg-white/10 rounded-lg py-2">
-                <div className="text-accent-yellow font-bold">
+                <div className="font-bold" style={{ color: "#CCFF00" }}>
                   {cat.stats.reviews}
                 </div>
                 <div className="text-xs text-gray-400">리뷰</div>
@@ -183,7 +186,7 @@ export default function CatsTab() {
       {/* Cat Detail Modal */}
       {selectedCat && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-900/95 backdrop-blur-lg border border-white/20 rounded-3xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-gray-800 backdrop-blur-lg border border-white/20 rounded-3xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-sm">
             {/* Close Button */}
             <button
               onClick={() => setSelectedCat(null)}
@@ -210,7 +213,9 @@ export default function CatsTab() {
 
             {/* Specialty */}
             <div className="mb-6">
-              <h3 className="text-accent-yellow font-bold mb-2">특기</h3>
+              <h3 className="font-bold mb-2" style={{ color: "#CCFF00" }}>
+                특기
+              </h3>
               <p className="text-gray-300 bg-white/5 rounded-lg p-3">
                 {selectedCat.specialty}
               </p>
@@ -218,7 +223,9 @@ export default function CatsTab() {
 
             {/* Progress */}
             <div className="mb-6">
-              <h3 className="text-accent-yellow font-bold mb-2">성장 현황</h3>
+              <h3 className="font-bold mb-2" style={{ color: "#CCFF00" }}>
+                성장 현황
+              </h3>
               <div className="bg-white/5 rounded-lg p-4">
                 <div className="flex justify-between text-sm mb-2">
                   <span>경험치</span>
@@ -248,7 +255,9 @@ export default function CatsTab() {
 
             {/* Achievements */}
             <div className="mb-6">
-              <h3 className="text-accent-yellow font-bold mb-3">획득한 업적</h3>
+              <h3 className="font-bold mb-3" style={{ color: "#CCFF00" }}>
+                획득한 업적
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {selectedCat.achievements.map((achievement, index) => (
                   <span
@@ -264,10 +273,15 @@ export default function CatsTab() {
 
             {/* Detailed Stats */}
             <div>
-              <h3 className="text-accent-yellow font-bold mb-3">상세 활동</h3>
+              <h3 className="font-bold mb-3" style={{ color: "#CCFF00" }}>
+                상세 활동
+              </h3>
               <div className="grid grid-cols-3 gap-3">
                 <div className="bg-white/5 rounded-lg p-3 text-center">
-                  <div className="text-2xl font-bold text-accent-yellow">
+                  <div
+                    className="text-2xl font-bold"
+                    style={{ color: "#CCFF00" }}
+                  >
                     {selectedCat.stats.reviews}
                   </div>
                   <div className="text-sm text-gray-400">작성한 리뷰</div>
@@ -291,8 +305,11 @@ export default function CatsTab() {
       )}
 
       {/* Tips */}
-      <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-6">
-        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+      <div className="bg-gray-800 border border-white/10 rounded-2xl p-6 shadow-sm">
+        <h3
+          className="text-lg font-bold mb-3 flex items-center gap-2"
+          style={{ color: "#CCFF00" }}
+        >
           💡 성장 팁
         </h3>
         <div className="space-y-2 text-gray-300 text-sm">

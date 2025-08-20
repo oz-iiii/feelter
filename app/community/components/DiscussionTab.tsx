@@ -183,7 +183,10 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
     <div className="w-full">
       {/* Page Header */}
       <div className="text-center mb-8">
-        <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-accent bg-clip-text text-transparent mb-4">
+        <h1
+          className="text-3xl lg:text-4xl font-bold mb-4"
+          style={{ color: "#CCFF00" }}
+        >
           토론 게시판
         </h1>
         <p className="text-gray-400 text-lg">
@@ -192,16 +195,20 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
       </div>
 
       {/* Type Filter */}
-      <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
+      <div className="mb-6 p-4 bg-gray-800 rounded-xl border border-white/10 shadow-sm">
         <h3 className="text-sm font-medium text-gray-300 mb-3">토론 유형</h3>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedType(null)}
             className={`px-4 py-2 rounded-full text-sm transition-all duration-300 flex items-center gap-2 ${
               selectedType === null
-                ? "bg-gradient-accent text-black"
-                : "bg-white/10 text-gray-400 hover:text-white hover:bg-white/20"
+                ? "text-black"
+                : "text-gray-400 hover:text-white hover:bg-white/20"
             }`}
+            style={{
+              backgroundColor:
+                selectedType === null ? "#CCFF00" : "transparent",
+            }}
           >
             <span>📋</span>
             <span>전체</span>
@@ -212,11 +219,15 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
               onClick={() => setSelectedType(type.id)}
               className={`px-4 py-2 rounded-full text-sm transition-all duration-300 flex items-center gap-2 ${
                 selectedType === type.id
-                  ? "bg-gradient-accent text-black"
-                  : `bg-gradient-to-r ${getTypeColor(
-                      type.id
-                    )} bg-opacity-20 text-white hover:bg-opacity-30`
+                  ? "text-black"
+                  : "text-white hover:bg-white/20"
               }`}
+              style={{
+                backgroundColor:
+                  selectedType === type.id
+                    ? "#CCFF00"
+                    : "rgba(255, 255, 255, 0.1)",
+              }}
             >
               <span>{type.icon}</span>
               <span>{type.label}</span>
@@ -228,11 +239,15 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
       {/* Create Discussion Button */}
       <button
         onClick={onCreatePost}
-        className="w-full mb-8 py-4 px-6 bg-gradient-accent rounded-xl text-black 
-                   font-bold text-lg hover:shadow-lg hover:shadow-blue-500/20 
-                   transition-all duration-300 hover:-translate-y-1"
+        className="w-full mb-8 py-4 px-6 rounded-xl text-black 
+                   font-bold text-lg hover:shadow-lg transition-all duration-300 
+                   hover:-translate-y-1 border-2 border-transparent hover:border-white/20"
+        style={{
+          backgroundColor: "#CCFF00",
+          boxShadow: "0 4px 20px rgba(204, 255, 0, 0.3)",
+        }}
       >
-        새 토론 시작하기
+        💬 새 토론 시작하기
       </button>
 
       {/* Discussion Cards */}
@@ -241,19 +256,22 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
           <article
             key={discussion.id}
             className={`
-              bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 
-              cursor-pointer transition-all duration-300 hover:bg-white/10 
-              hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/10
-              ${discussion.isActive ? "ring-2 ring-blue-500/30" : ""}
+              bg-gray-800 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-sm
+              cursor-pointer transition-all duration-300 hover:-translate-y-1 
+              hover:shadow-lg ${
+                discussion.isActive ? "ring-2 ring-blue-500/30" : ""
+              }
             `}
           >
             {/* Header */}
             <header className="flex items-center gap-4 mb-4">
               <div
-                className={`
-                w-12 h-12 rounded-full flex items-center justify-center text-lg
-                bg-gradient-to-r ${getTypeColor(discussion.type)}
-              `}
+                className="w-12 h-12 rounded-full flex items-center justify-center text-lg"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #CCFF00 0%, #99CC00 100%)",
+                  color: "#111111",
+                }}
               >
                 {discussion.avatar}
               </div>
@@ -265,7 +283,14 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
                   </h3>
                   {getStatusBadge(discussion.status)}
                   {discussion.isActive && (
-                    <span className="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-1 rounded-full text-xs font-medium">
+                    <span
+                      className="px-2 py-1 rounded-full text-xs font-medium border"
+                      style={{
+                        backgroundColor: "rgba(204, 255, 0, 0.2)",
+                        color: "#CCFF00",
+                        borderColor: "rgba(204, 255, 0, 0.3)",
+                      }}
+                    >
                       활발한 토론 중
                     </span>
                   )}
@@ -288,7 +313,12 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
                 {discussion.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-white/10 text-xs px-2 py-1 rounded-full text-gray-400"
+                    className="text-xs px-2 py-1 rounded-full"
+                    style={{
+                      backgroundColor: "rgba(204, 255, 0, 0.1)",
+                      color: "#CCFF00",
+                      border: "1px solid rgba(204, 255, 0, 0.3)",
+                    }}
                   >
                     #{tag}
                   </span>
@@ -314,8 +344,14 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
               </div>
 
               {discussion.isActive && (
-                <div className="flex items-center gap-2 text-sm text-blue-400">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                <div
+                  className="flex items-center gap-2 text-sm"
+                  style={{ color: "#CCFF00" }}
+                >
+                  <span
+                    className="w-2 h-2 rounded-full animate-pulse"
+                    style={{ backgroundColor: "#CCFF00" }}
+                  ></span>
                   <span>실시간 토론</span>
                 </div>
               )}
@@ -326,7 +362,10 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
 
       {/* Hot Topics Section */}
       <div className="mt-12 mb-8">
-        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+        <h2
+          className="text-2xl font-bold mb-6 flex items-center gap-2"
+          style={{ color: "#CCFF00" }}
+        >
           🔥 인기 토론 주제
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -336,9 +375,10 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
             .map((discussion) => (
               <div
                 key={`hot-${discussion.id}`}
-                className="bg-gradient-to-r from-red-500/10 to-orange-500/10 
-                           border border-red-500/20 rounded-xl p-4 cursor-pointer
-                           hover:from-red-500/15 hover:to-orange-500/15 transition-all duration-300"
+                className="bg-gray-800 border rounded-xl p-4 cursor-pointer transition-all duration-300 shadow-sm"
+                style={{
+                  borderColor: "rgba(204, 255, 0, 0.3)",
+                }}
               >
                 <h3 className="font-bold text-white mb-2 text-sm line-clamp-2">
                   {discussion.title}
@@ -354,26 +394,26 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
 
       {/* Statistics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-          <div className="text-2xl font-bold text-accent-yellow">
+        <div className="bg-gray-800 rounded-xl p-4 text-center border border-white/10 shadow-sm">
+          <div className="text-2xl font-bold" style={{ color: "#CCFF00" }}>
             {discussionData.length}
           </div>
           <div className="text-sm text-gray-400">총 토론 수</div>
         </div>
-        <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-          <div className="text-2xl font-bold text-red-400">
+        <div className="bg-gray-800 rounded-xl p-4 text-center border border-white/10 shadow-sm">
+          <div className="text-2xl font-bold" style={{ color: "#CCFF00" }}>
             {discussionData.filter((item) => item.status === "hot").length}
           </div>
           <div className="text-sm text-gray-400">HOT 토론</div>
         </div>
-        <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-          <div className="text-2xl font-bold text-blue-400">
+        <div className="bg-gray-800 rounded-xl p-4 text-center border border-white/10 shadow-sm">
+          <div className="text-2xl font-bold" style={{ color: "#CCFF00" }}>
             {discussionData.reduce((sum, item) => sum + item.comments, 0)}
           </div>
           <div className="text-sm text-gray-400">총 댓글 수</div>
         </div>
-        <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-          <div className="text-2xl font-bold text-green-400">
+        <div className="bg-gray-800 rounded-xl p-4 text-center border border-white/10 shadow-sm">
+          <div className="text-2xl font-bold" style={{ color: "#CCFF00" }}>
             {discussionData.filter((item) => item.isActive).length}
           </div>
           <div className="text-sm text-gray-400">활성 토론</div>
@@ -381,13 +421,21 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
       </div>
 
       {/* Discussion Guidelines */}
-      <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-2xl p-6 mb-8">
-        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+      <div
+        className="bg-gray-800 border rounded-2xl p-6 mb-8 shadow-sm"
+        style={{ borderColor: "rgba(204, 255, 0, 0.3)" }}
+      >
+        <h3
+          className="text-lg font-bold mb-3 flex items-center gap-2"
+          style={{ color: "#CCFF00" }}
+        >
           📋 토론 가이드라인
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
           <div>
-            <h4 className="font-semibold text-accent-yellow mb-2">토론 예절</h4>
+            <h4 className="font-semibold mb-2" style={{ color: "#CCFF00" }}>
+              토론 예절
+            </h4>
             <ul className="space-y-1">
               <li>• 서로 다른 의견을 존중해주세요</li>
               <li>• 근거 있는 주장을 해주세요</li>
@@ -395,7 +443,9 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-accent-yellow mb-2">금지사항</h4>
+            <h4 className="font-semibold mb-2" style={{ color: "#CCFF00" }}>
+              금지사항
+            </h4>
             <ul className="space-y-1">
               <li>• 인신공격 및 욕설 금지</li>
               <li>• 무분별한 스포일러 금지</li>
@@ -409,7 +459,7 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
       {discussionData.length === 0 && (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">💭</div>
-          <h3 className="text-xl font-bold text-white mb-2">
+          <h3 className="text-xl font-bold mb-2" style={{ color: "#CCFF00" }}>
             {selectedType ? "해당 유형의 토론이 없습니다" : "토론이 없습니다"}
           </h3>
           <p className="text-gray-400 mb-6">
@@ -418,8 +468,14 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
           </p>
           <button
             onClick={onCreatePost}
-            className="bg-gradient-accent px-6 py-2 rounded-lg text-black font-medium
-                       hover:shadow-lg transition-all duration-300"
+            className="px-6 py-3 rounded-lg font-medium hover:shadow-lg 
+                       transition-all duration-300 border-2 border-transparent 
+                       hover:border-white/20"
+            style={{
+              backgroundColor: "#CCFF00",
+              color: "#111111",
+              boxShadow: "0 4px 20px rgba(204, 255, 0, 0.3)",
+            }}
           >
             첫 토론 시작하기
           </button>
@@ -427,8 +483,11 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
       )}
 
       {/* Trending Topics */}
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+      <div className="bg-gray-800 border border-white/10 rounded-2xl p-6 shadow-sm">
+        <h3
+          className="text-lg font-bold mb-4 flex items-center gap-2"
+          style={{ color: "#CCFF00" }}
+        >
           📈 실시간 트렌드
         </h3>
         <div className="flex flex-wrap gap-2">
@@ -442,10 +501,12 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
           ].map((trend, index) => (
             <button
               key={index}
-              className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 
-                         border border-purple-500/30 px-3 py-1 rounded-full 
-                         text-sm text-purple-300 hover:from-purple-500/30 hover:to-pink-500/30
-                         transition-all duration-300"
+              className="px-3 py-1 rounded-full text-sm transition-all duration-300"
+              style={{
+                backgroundColor: "rgba(204, 255, 0, 0.1)",
+                color: "#CCFF00",
+                border: "1px solid rgba(204, 255, 0, 0.3)",
+              }}
             >
               {trend}
             </button>

@@ -123,7 +123,10 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
     <div className="w-full">
       {/* Page Header */}
       <div className="text-center mb-8">
-        <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-accent bg-clip-text text-transparent mb-4">
+        <h1
+          className="text-3xl lg:text-4xl font-bold mb-4"
+          style={{ color: "#CCFF00" }}
+        >
           나의 감정 기록실
         </h1>
         <p className="text-gray-400 text-lg">
@@ -132,16 +135,20 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
       </div>
 
       {/* Emotion Filter */}
-      <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
+      <div className="mb-6 p-4 bg-gray-800 rounded-xl border border-white/10 shadow-sm">
         <h3 className="text-sm font-medium text-gray-300 mb-3">감정별 필터</h3>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedEmotion(null)}
             className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
               selectedEmotion === null
-                ? "bg-gradient-accent text-black"
-                : "bg-white/10 text-gray-400 hover:text-white hover:bg-white/20"
+                ? "text-black"
+                : "text-gray-400 hover:text-white hover:bg-white/20"
             }`}
+            style={{
+              backgroundColor:
+                selectedEmotion === null ? "#CCFF00" : "transparent",
+            }}
           >
             전체
           </button>
@@ -151,11 +158,15 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
               onClick={() => setSelectedEmotion(emotion)}
               className={`px-4 py-2 rounded-full text-sm transition-all duration-300 flex items-center gap-2 ${
                 selectedEmotion === emotion
-                  ? "bg-gradient-accent text-black"
-                  : `bg-gradient-to-r ${getEmotionColor(
-                      emotion
-                    )} bg-opacity-20 text-white hover:bg-opacity-30`
+                  ? "text-black"
+                  : "text-white hover:bg-white/20"
               }`}
+              style={{
+                backgroundColor:
+                  selectedEmotion === emotion
+                    ? "#CCFF00"
+                    : "rgba(255, 255, 255, 0.1)",
+              }}
             >
               <span>
                 {emotionData.find((item) => item.emotion === emotion)?.emoji}
@@ -169,11 +180,15 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
       {/* Create Emotion Button */}
       <button
         onClick={onCreatePost}
-        className="w-full mb-8 py-4 px-6 bg-gradient-accent rounded-xl text-black 
-                   font-bold text-lg hover:shadow-lg hover:shadow-cyan-500/20 
-                   transition-all duration-300 hover:-translate-y-1"
+        className="w-full mb-8 py-4 px-6 rounded-xl text-black 
+                   font-bold text-lg hover:shadow-lg transition-all duration-300 
+                   hover:-translate-y-1 border-2 border-transparent hover:border-white/20"
+        style={{
+          backgroundColor: "#CCFF00",
+          boxShadow: "0 4px 20px rgba(204, 255, 0, 0.3)",
+        }}
       >
-        새 감정 기록하기
+        💙 새 감정 기록하기
       </button>
 
       {/* Emotion Records Grid */}
@@ -182,12 +197,9 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
           <div
             key={record.id}
             onClick={() => handleRecordClick(record)}
-            className={`
-              bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 
-              cursor-pointer transition-all duration-300 hover:bg-white/10 
-              hover:-translate-y-1 hover:shadow-lg
-              bg-gradient-to-r ${getEmotionColor(record.emotion)} bg-opacity-5
-            `}
+            className="bg-gray-800 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-sm
+                       cursor-pointer transition-all duration-300 hover:-translate-y-1 
+                       hover:shadow-lg"
           >
             <div className="flex items-start gap-4">
               {/* Emotion Icon */}
@@ -236,7 +248,12 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
                   {record.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="bg-white/10 text-xs px-2 py-1 rounded-full text-gray-400"
+                      className="text-xs px-2 py-1 rounded-full"
+                      style={{
+                        backgroundColor: "rgba(204, 255, 0, 0.1)",
+                        color: "#CCFF00",
+                        border: "1px solid rgba(204, 255, 0, 0.3)",
+                      }}
                     >
                       #{tag}
                     </span>
@@ -251,7 +268,7 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
       {/* Emotion Detail Modal */}
       {selectedRecord && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-900/95 backdrop-blur-lg border border-white/20 rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-gray-800 backdrop-blur-lg border border-white/20 rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-sm">
             {/* Close Button */}
             <button
               onClick={() => setSelectedRecord(null)}
@@ -297,7 +314,10 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
 
             {/* Full Text */}
             <div className="mb-6">
-              <h3 className="text-accent-yellow font-bold mb-3 text-lg">
+              <h3
+                className="font-bold mb-3 text-lg"
+                style={{ color: "#CCFF00" }}
+              >
                 감정 기록
               </h3>
               <div className="bg-white/5 rounded-xl p-4 border border-white/10">
@@ -309,14 +329,18 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
 
             {/* Tags */}
             <div className="mb-6">
-              <h3 className="text-accent-yellow font-bold mb-3 text-lg">
+              <h3
+                className="font-bold mb-3 text-lg"
+                style={{ color: "#CCFF00" }}
+              >
                 태그
               </h3>
               <div className="flex flex-wrap gap-2">
                 {selectedRecord.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-white/10 border border-white/20 px-4 py-2 rounded-full text-gray-300"
+                    className="border border-white/20 px-4 py-2 rounded-full text-gray-300"
+                    style={{ backgroundColor: "rgba(204, 255, 0, 0.1)" }}
                   >
                     #{tag}
                   </span>
@@ -326,7 +350,10 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
 
             {/* Actions */}
             <div className="flex gap-3">
-              <button className="flex-1 py-3 px-6 bg-gradient-accent rounded-xl text-black font-bold hover:shadow-lg transition-all duration-300">
+              <button
+                className="flex-1 py-3 px-6 rounded-xl text-black font-bold hover:shadow-lg transition-all duration-300"
+                style={{ backgroundColor: "#CCFF00" }}
+              >
                 편집하기
               </button>
               <button className="flex-1 py-3 px-6 bg-white/10 hover:bg-white/20 rounded-xl text-white font-bold transition-all duration-300">
@@ -339,19 +366,19 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
 
       {/* Statistics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
-          <div className="text-2xl font-bold text-accent-yellow">
+        <div className="bg-gray-800 rounded-xl p-4 text-center border border-white/10 shadow-sm">
+          <div className="text-2xl font-bold" style={{ color: "#CCFF00" }}>
             {emotionData.length}
           </div>
           <div className="text-sm text-gray-400">총 기록 수</div>
         </div>
-        <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+        <div className="bg-gray-800 rounded-xl p-4 text-center border border-white/10 shadow-sm">
           <div className="text-2xl font-bold text-pink-400">
             {uniqueEmotions.length}
           </div>
           <div className="text-sm text-gray-400">느낀 감정 종류</div>
         </div>
-        <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+        <div className="bg-gray-800 rounded-xl p-4 text-center border border-white/10 shadow-sm">
           <div className="text-2xl font-bold text-blue-400">
             {Math.round(
               (emotionData.reduce((sum, item) => sum + item.intensity, 0) /
@@ -361,7 +388,7 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
           </div>
           <div className="text-sm text-gray-400">평균 감정 강도</div>
         </div>
-        <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+        <div className="bg-gray-800 rounded-xl p-4 text-center border border-white/10 shadow-sm">
           <div className="text-2xl font-bold text-green-400">
             {
               emotionData.filter(
@@ -379,7 +406,7 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
       {filteredData.length === 0 && (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">💙</div>
-          <h3 className="text-xl font-bold text-white mb-2">
+          <h3 className="text-xl font-bold mb-2" style={{ color: "#CCFF00" }}>
             {selectedEmotion
               ? `${selectedEmotion} 감정 기록이 없습니다`
               : "감정 기록이 없습니다"}
@@ -390,8 +417,14 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
           </p>
           <button
             onClick={onCreatePost}
-            className="bg-gradient-accent px-6 py-2 rounded-lg text-black font-medium
-                       hover:shadow-lg transition-all duration-300"
+            className="px-6 py-3 rounded-lg font-medium hover:shadow-lg 
+                       transition-all duration-300 border-2 border-transparent 
+                       hover:border-white/20"
+            style={{
+              backgroundColor: "#CCFF00",
+              color: "#111111",
+              boxShadow: "0 4px 20px rgba(204, 255, 0, 0.3)",
+            }}
           >
             첫 감정 기록하기
           </button>
@@ -399,8 +432,11 @@ export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
       )}
 
       {/* Tips */}
-      <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-6">
-        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+      <div className="bg-gray-800 border border-white/10 rounded-2xl p-6 shadow-sm">
+        <h3
+          className="text-lg font-bold mb-3 flex items-center gap-2"
+          style={{ color: "#CCFF00" }}
+        >
           💡 감정 기록 팁
         </h3>
         <div className="space-y-2 text-gray-300 text-sm">

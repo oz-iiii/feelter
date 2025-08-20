@@ -97,15 +97,19 @@ export default function FeedTab({ onCreatePost }: FeedTabProps) {
       {/* Create Post Button */}
       <button
         onClick={onCreatePost}
-        className="w-full mb-8 py-4 px-6 bg-gradient-accent rounded-xl text-black 
-                   font-bold text-lg hover:shadow-lg hover:shadow-cyan-500/20 
-                   transition-all duration-300 hover:-translate-y-1"
+        className="w-full mb-8 py-4 px-6 rounded-xl text-black 
+                   font-bold text-lg hover:shadow-lg transition-all duration-300 
+                   hover:-translate-y-1 border-2 border-transparent hover:border-white/20"
+        style={{
+          backgroundColor: "#CCFF00",
+          boxShadow: "0 4px 20px rgba(204, 255, 0, 0.3)",
+        }}
       >
-        새 글 작성
+        ✨ 새 글 작성하기
       </button>
 
       {/* Feed Cards */}
-      <div className="space-y-0">
+      <div className="space-y-6">
         {feedData.map((item, index) => (
           <ActivityCard key={index} {...item} />
         ))}
@@ -114,12 +118,16 @@ export default function FeedTab({ onCreatePost }: FeedTabProps) {
       {/* Loading Indicator */}
       {isLoading && (
         <div className="flex justify-center items-center py-8">
-          <div className="bg-white/10 rounded-xl p-6 text-center">
+          <div className="bg-gray-800 rounded-xl p-6 text-center border border-white/10 shadow-sm">
             <div
-              className="animate-spin w-8 h-8 border-2 border-accent-yellow border-t-transparent 
-                            rounded-full mx-auto mb-3"
+              className="animate-spin w-8 h-8 border-2 border-t-transparent 
+                        rounded-full mx-auto mb-3"
+              style={{
+                borderColor: "#CCFF00",
+                borderTopColor: "transparent",
+              }}
             ></div>
-            <p className="text-gray-400">더 많은 콘텐츠를 불러오는 중...</p>
+            <p style={{ color: "#CCFF00" }}>더 많은 콘텐츠를 불러오는 중...</p>
           </div>
         </div>
       )}
@@ -128,14 +136,20 @@ export default function FeedTab({ onCreatePost }: FeedTabProps) {
       {feedData.length === 0 && !isLoading && (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">📱</div>
-          <h3 className="text-xl font-bold text-white mb-2">
+          <h3 className="text-xl font-bold mb-2" style={{ color: "#CCFF00" }}>
             표시할 피드가 없습니다
           </h3>
           <p className="text-gray-400 mb-6">새 글을 작성해보세요.</p>
           <button
             onClick={onCreatePost}
-            className="bg-gradient-accent px-6 py-2 rounded-lg text-black font-medium
-                       hover:shadow-lg transition-all duration-300"
+            className="px-6 py-3 rounded-lg font-medium hover:shadow-lg 
+                       transition-all duration-300 border-2 border-transparent 
+                       hover:border-white/20"
+            style={{
+              backgroundColor: "#CCFF00",
+              color: "#111111",
+              boxShadow: "0 4px 20px rgba(204, 255, 0, 0.3)",
+            }}
           >
             첫 번째 글 작성하기
           </button>

@@ -19,33 +19,38 @@ export default function CommunityTabs({
 }: CommunityTabsProps) {
   return (
     <nav
-      className="fixed top-[70px] left-0 right-0 bg-black/90 backdrop-blur-lg 
-                 border-b border-white/10 z-40 transition-transform duration-300"
+      className="bg-gray-800 backdrop-blur-lg border-b border-white/10 
+                   rounded-lg mx-4 lg:mx-0 mb-6 transition-all duration-300 shadow-sm"
     >
-      <div className="flex items-center px-4 lg:px-10 py-3 overflow-x-auto">
-        <div className="flex gap-4 lg:gap-10 min-w-max">
+      <div className="flex items-center px-4 lg:px-6 py-4 overflow-x-auto">
+        <div className="flex gap-6 lg:gap-8 min-w-max w-full justify-center">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
               className={`
-                relative flex items-center gap-2 px-4 py-2 text-sm lg:text-base 
-                font-medium transition-all duration-300 whitespace-nowrap
+                relative flex items-center gap-2 px-4 py-3 text-sm lg:text-base 
+                font-medium transition-all duration-300 whitespace-nowrap rounded-lg
                 ${
                   activeTab === tab.id
-                    ? "text-accent-yellow"
+                    ? "text-black"
                     : "text-gray-400 hover:text-white"
                 }
               `}
+              style={{
+                backgroundColor:
+                  activeTab === tab.id ? "#CCFF00" : "transparent",
+              }}
             >
-              <span className="text-lg lg:hidden">{tab.icon}</span>
+              <span className="text-lg">{tab.icon}</span>
               <span>{tab.label}</span>
 
               {/* Active Tab Indicator */}
               {activeTab === tab.id && (
                 <div
-                  className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 
-                           w-6 h-0.5 bg-gradient-accent rounded-full"
+                  className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 
+                           w-8 h-1 rounded-full"
+                  style={{ backgroundColor: "#CCFF00" }}
                 />
               )}
             </button>

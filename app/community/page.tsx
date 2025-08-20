@@ -35,12 +35,59 @@ export default function CommunityPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-main pt-[130px] px-4 lg:px-10">
-      {/* Sub Navigation */}
-      <CommunityTabs activeTab={activeTab} onTabChange={setActiveTab} />
+    <main
+      className="min-h-screen pt-[130px] px-4 lg:px-10"
+      style={{ backgroundColor: "#111111" }}
+    >
+      {/* Header Section */}
+      <div className="max-w-7xl mx-auto mb-8">
+        <div className="text-center mb-8">
+          <h1
+            className="text-4xl lg:text-6xl font-bold mb-4"
+            style={{ color: "#CCFF00" }}
+          >
+            커뮤니티
+          </h1>
+          <p
+            className="text-lg lg:text-xl opacity-80"
+            style={{ color: "#CCFF00" }}
+          >
+            함께 이야기하고 공유하는 공간
+          </p>
+        </div>
+      </div>
 
-      {/* Main Content - 전체 너비로 변경 */}
-      <div className="max-w-5xl mx-auto mt-8">{renderActiveTab()}</div>
+      {/* Sub Navigation */}
+      <div className="max-w-7xl mx-auto">
+        <CommunityTabs activeTab={activeTab} onTabChange={setActiveTab} />
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto mt-8">{renderActiveTab()}</div>
+
+      {/* Floating Action Button */}
+      <button
+        onClick={handleCreatePost}
+        className="fixed bottom-8 right-8 w-16 h-16 rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl z-50 flex items-center justify-center"
+        style={{
+          backgroundColor: "#CCFF00",
+          color: "#111111",
+        }}
+      >
+        <svg
+          className="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
+      </button>
     </main>
   );
 }
