@@ -29,7 +29,6 @@ export default function ActivityCard({
   rating,
   likes: initialLikes,
   comments,
-  shares = 0,
   tags,
   className = "",
 }: ActivityCardProps) {

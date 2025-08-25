@@ -5,7 +5,6 @@ import Image from "next/image";
 import MyLayout from "../../_components/my/MyLayout";
 import { User } from "../../_components/model/types";
 import { defaultUser } from "../../_components/model/data/users";
-import { GENRES, DIRECTORS } from "../../_components/model/constants";
 
 export default function ProfilePage() {
 	const getInitialProfile = (): User => {

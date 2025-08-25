@@ -82,7 +82,7 @@ const emotionColors = {
 };
 
 export default function EmotionsTab({ onCreatePost }: EmotionsTabProps) {
-  const [emotionData, setEmotionData] =
+  const [emotionData] =
     useState<EmotionRecord[]>(mockEmotionData);
   const [selectedEmotion, setSelectedEmotion] = useState<string | null>(null);
   const [selectedRecord, setSelectedRecord] = useState<EmotionRecord | null>(

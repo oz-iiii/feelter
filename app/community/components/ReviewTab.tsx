@@ -84,7 +84,7 @@ export default function ReviewTab({ onCreatePost }: ReviewTabProps) {
   const [reviewData, setReviewData] =
     useState<ActivityCardProps[]>(mockReviewData);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   useEffect(() => {
     let filteredData = [...mockReviewData];

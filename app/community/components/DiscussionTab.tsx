@@ -116,31 +116,9 @@ export default function DiscussionTab({ onCreatePost }: DiscussionTabProps) {
     setDiscussionData(filteredData);
   }, [selectedType]);
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case "hot":
-        return "🔥";
-      case "question":
-        return "❓";
-      case "poll":
-        return "📊";
-      default:
-        return "💭";
-    }
-  };
+  
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "hot":
-        return "from-red-500 to-orange-500";
-      case "question":
-        return "from-blue-500 to-cyan-500";
-      case "poll":
-        return "from-purple-500 to-pink-500";
-      default:
-        return "from-gray-500 to-gray-600";
-    }
-  };
+  
 
   const getStatusBadge = (status?: string) => {
     if (!status) return null;

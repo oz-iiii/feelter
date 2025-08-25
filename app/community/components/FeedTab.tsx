@@ -64,7 +64,7 @@ const mockFeedData: ActivityCardProps[] = [
 ];
 
 export default function FeedTab({ onCreatePost }: FeedTabProps) {
-  const [feedData, setFeedData] = useState<ActivityCardProps[]>(mockFeedData);
+  const [feedData] = useState<ActivityCardProps[]>(mockFeedData);
   const [isLoading, setIsLoading] = useState(false);
 
   const loadMoreContent = () => {
