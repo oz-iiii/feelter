@@ -1,23 +1,20 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useCallback } from "react";
-import Header from "./header";
-import SearchBar from "./SearchBar";
-import ContentGrid from "./ContentGrid";
-import Footer from "./Footer";
-import Sidebar from "./Sidebar";
-import SearchModal from "./SearchModal";
-import { sampleContent, ContentItem, MASTER_DATA } from "@/lib/data";
+import React, { useState, useEffect, useCallback } from 'react';
+import SearchBar from './SearchBar';
+import ContentGrid from './ContentGrid';
+import Footer from './Footer';
+import Sidebar from './Sidebar';
+import { sampleContent, ContentItem, MASTER_DATA } from '@/lib/data';
 
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const [currentSort, setCurrentSort] = useState("latest");
-  const [isPaginated, setIsPaginated] = useState(false);
+  const [currentSort, setCurrentSort] = useState('latest');
+  const [isPaginated, setIsPaginated] = useState(true); // Always show pagination
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const pageSize = 8;
 
-  // Mock large dataset
   const buildLargeDataset = (times: number = 10): ContentItem[] => {
     const arr: ContentItem[] = [];
     for (let i = 0; i < times; i += 1) {
@@ -39,21 +36,21 @@ export default function Home() {
     (dataset: ContentItem[], sortKey: string): ContentItem[] => {
       function getSortValue(item: ContentItem) {
         switch (sortKey) {
-          case "latest":
+          case 'latest':
             return item.year || 0;
-          case "popular":
+          case 'popular':
             return item.popularity || 0;
-          case "rating":
+          case 'rating':
             return item.rating || 8.0;
-          case "title":
-            return item.title || "";
+          case 'title':
+            return item.title || '';
           default:
             return 0;
         }
       }
 
       return [...dataset].sort((a, b) => {
-        if (sortKey === "title") {
+        if (sortKey === 'title') {
           return String(getSortValue(a)).localeCompare(String(getSortValue(b)));
         }
         return Number(getSortValue(b)) - Number(getSortValue(a));
@@ -66,23 +63,38 @@ export default function Home() {
     setLargeDataset((prevDataset) => sortDataset(prevDataset, currentSort));
   }, [currentSort, sortDataset]);
 
-  const currentContent = isPaginated
-    ? largeDataset.slice(
-        (currentPage - 1) * pageSize,
-        (currentPage - 1) * pageSize + pageSize
-      )
-    : sortDataset(sampleContent, currentSort);
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isSidebarOpen]);
 
-  const totalPages = Math.ceil(largeDataset.length / pageSize);
+  const filteredData = searchQuery
+    ? largeDataset.filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : largeDataset;
+
+  const currentContent = filteredData.slice(
+    (currentPage - 1) * pageSize,
+    (currentPage - 1) * pageSize + pageSize
+  );
+
+  const totalPages = Math.ceil(filteredData.length / pageSize);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1); // Reset to first page on new search
   };
 
   return (
-    <div className="bg-[#1a1a1a] text-[#e0e0e0] font-sans min-h-screen">
-      
+    <div className="text-[#B0B3B8] font-sans min-h-screen bg-[#0A0F1C]">
       <Sidebar
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
@@ -90,37 +102,35 @@ export default function Home() {
       />
       <div
         className={`fixed inset-0 bg-black/50 z-[900] transition-opacity duration-250 ${
-          isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsSidebarOpen(false)}
       />
       <main>
         <SearchBar
-          onSearchClick={() => setIsSearchModalOpen(true)}
           onMenuClick={() => setIsSidebarOpen(true)}
+          onSearch={handleSearch}
         />
-        <ContentGrid
-          content={currentContent}
-          currentSort={currentSort}
-          setCurrentSort={setCurrentSort}
-          isPaginated={isPaginated}
-          setIsPaginated={setIsPaginated}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-          onReset={() => {
-            setIsPaginated(false);
-            setCurrentPage(1);
-          }}
-        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <ContentGrid
+            content={currentContent}
+            totalItems={filteredData.length}
+            currentSort={currentSort}
+            setCurrentSort={setCurrentSort}
+            isPaginated={isPaginated}
+            setIsPaginated={setIsPaginated}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            onReset={() => {
+              setIsPaginated(false);
+              setCurrentPage(1);
+              setSearchQuery('');
+            }}
+          />
+        </div>
       </main>
       <Footer />
-      {isSearchModalOpen && (
-        <SearchModal
-          onClose={() => setIsSearchModalOpen(false)}
-          content={largeDataset}
-        />
-      )}
     </div>
   );
 }

@@ -1,5 +1,10 @@
-
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import ContentCard from "./ContentCard";
 import { ContentItem } from "@/lib/data";
 import { IoCloseOutline } from "react-icons/io5";
@@ -57,9 +62,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ onClose, content }) => {
     if (!q) {
       return content;
     }
-    return content.filter((item) =>
-      item.title.toLowerCase().includes(q)
-    );
+    return content.filter((item) => item.title.toLowerCase().includes(q));
   }, [debouncedQuery, content]);
 
   const handleModalContentClick = (e: React.MouseEvent) => {

@@ -22,7 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang="ko">
 			<body
-				className={`${notoSansKR.variable} font-sans antialiased min-h-screen bg-[#0c0c0c] text-[#f0f0f0]`}
+				className={`${notoSansKR.variable} font-sans antialiased min-h-screen bg-black text-[#f0f0f0]`}
 			>
 				<Navbar />
 				{children}

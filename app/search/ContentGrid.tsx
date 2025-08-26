@@ -8,6 +8,7 @@ import { ContentItem } from "@/lib/data";
 
 interface ContentGridProps {
   content: ContentItem[];
+  totalItems: number;
   currentSort: string;
   setCurrentSort: (sortKey: string) => void;
   isPaginated: boolean;
@@ -20,6 +21,7 @@ interface ContentGridProps {
 
 const ContentGrid: React.FC<ContentGridProps> = ({
   content,
+  totalItems,
   currentSort,
   setCurrentSort,
   isPaginated,
@@ -27,43 +29,32 @@ const ContentGrid: React.FC<ContentGridProps> = ({
   currentPage,
   totalPages,
   onPageChange,
-  onReset,
 }) => {
-  const handleLoadMoreClick = () => {
-    if (isPaginated) {
-      onReset();
-    } else {
-      setIsPaginated(true);
-      onPageChange(1);
-    }
-  };
-
   return (
-    <section className="p-8">
-      <div className="flex items-center justify-between gap-4">
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">
-          검색 결과 ({isPaginated ? "97" : "7"}개)
+    <section className="bg-[#141A28] rounded-2xl p-6">
+      <div className="flex items-center justify-between gap-4 mb-6">
+        <h2 className="font-semibold text-[20px] text-white">
+          {totalItems}개의 콘텐츠를 찾았습니다
         </h2>
-        <SortDropdown currentSort={currentSort} onSortChange={setCurrentSort} />
+        <SortDropdown
+          currentSort={currentSort}
+          onSortChange={setCurrentSort}
+        />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-6">
-        {content.map((item, index) => (
-          <ContentCard key={index} content={item} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {content.map((item) => (
+          <ContentCard key={item.title} content={item} />
         ))}
       </div>
-      {isPaginated && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={onPageChange}
-        />
+      {isPaginated && totalPages > 1 && (
+        <div className="mt-8">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+          />
+        </div>
       )}
-      <button
-        className="block mx-auto mt-8 px-8 py-3 bg-transparent border border-[#ccc] text-[#ccc] rounded-full cursor-pointer hover:bg-white/10 transition-colors duration-200"
-        onClick={handleLoadMoreClick}
-      >
-        {isPaginated ? "처음 상태로" : "더 많은 결과 보기"}
-      </button>
     </section>
   );
 };

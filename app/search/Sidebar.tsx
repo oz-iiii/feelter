@@ -13,20 +13,22 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, masterData }) => {
   return (
     <aside
-      className={`fixed top-0 left-0 w-80 h-screen bg-[#1f1f1f] border-r border-[#333] transform transition-transform duration-300 z-[1000] p-4 overflow-y-auto ${
+      className={`fixed top-0 left-0 w-72 h-screen bg-black/80 backdrop-blur-sm text-white transform transition-transform duration-300 z-[1000] thin-scrollbar ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <button
-        className="absolute top-3 right-3 w-9 h-9 rounded-full border border-[#444] bg-[#2e2e2e] text-[#ddd] cursor-pointer"
-        aria-label="사이드바 닫기"
-        type="button"
-        onClick={onClose}
-      >
-        <IoCloseOutline size={28} className="mx-auto" />
-      </button>
-      <div className="mt-12">
-        <h2 className="text-2xl font-semibold mb-6 text-[#e5e7eb]">필터</h2>
+      <div className="flex justify-between items-center p-4 shadow-xl">
+        <h2 className="text-xl font-bold text-sky-400">Filter</h2>
+        <button
+          className="text-gray-400 hover:text-white hover:scale-110 transition-transform duration-200"
+          aria-label="Close sidebar"
+          type="button"
+          onClick={onClose}
+        >
+          <IoCloseOutline size={28} />
+        </button>
+      </div>
+      <div className="p-4 overflow-y-auto h-[calc(100vh-65px)] thin-scrollbar">
         <div className="space-y-6">
           <FilterSection
             title="플랫폼별"
