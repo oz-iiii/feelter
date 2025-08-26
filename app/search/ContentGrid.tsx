@@ -11,12 +11,9 @@ interface ContentGridProps {
   totalItems: number;
   currentSort: string;
   setCurrentSort: (sortKey: string) => void;
-  isPaginated: boolean;
-  setIsPaginated: (state: boolean) => void;
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  onReset: () => void;
 }
 
 const ContentGrid: React.FC<ContentGridProps> = ({
@@ -24,8 +21,6 @@ const ContentGrid: React.FC<ContentGridProps> = ({
   totalItems,
   currentSort,
   setCurrentSort,
-  isPaginated,
-  setIsPaginated,
   currentPage,
   totalPages,
   onPageChange,
@@ -36,17 +31,14 @@ const ContentGrid: React.FC<ContentGridProps> = ({
         <h2 className="font-semibold text-[20px] text-white">
           {totalItems}개의 콘텐츠를 찾았습니다
         </h2>
-        <SortDropdown
-          currentSort={currentSort}
-          onSortChange={setCurrentSort}
-        />
+        <SortDropdown currentSort={currentSort} onSortChange={setCurrentSort} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {content.map((item) => (
           <ContentCard key={item.title} content={item} />
         ))}
       </div>
-      {isPaginated && totalPages > 1 && (
+      {totalPages > 1 && (
         <div className="mt-8">
           <Pagination
             currentPage={currentPage}

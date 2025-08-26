@@ -10,7 +10,6 @@ import { sampleContent, ContentItem, MASTER_DATA } from '@/lib/data';
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentSort, setCurrentSort] = useState('latest');
-  const [isPaginated, setIsPaginated] = useState(true); // Always show pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const pageSize = 8;
@@ -117,16 +116,9 @@ export default function Home() {
             totalItems={filteredData.length}
             currentSort={currentSort}
             setCurrentSort={setCurrentSort}
-            isPaginated={isPaginated}
-            setIsPaginated={setIsPaginated}
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
-            onReset={() => {
-              setIsPaginated(false);
-              setCurrentPage(1);
-              setSearchQuery('');
-            }}
           />
         </div>
       </main>
