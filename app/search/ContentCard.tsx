@@ -20,8 +20,8 @@ const ContentCard: React.FC<ContentCardProps> = ({ content }) => {
         <Image
           src={content.imageUrl}
           alt={content.title}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
           className="transition-opacity duration-300 group-hover:opacity-50"
         />
       </div>
